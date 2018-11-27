@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="Modelo.personajes" table="personajes">
+		<id name="ID_per" type="int">
+			<column name="ID" />
+		</id>
+
+		<property name="Nombre_Personaje" type="string">
+			<column name="Nombre_Personaje" length="255" not-null="true" />
+		</property>
+		
+		<property name="juego" type="int">
+			<column name="ID_Juego"/>
+		</property>
+	
+	</class>
+
+</hibernate-mapping>

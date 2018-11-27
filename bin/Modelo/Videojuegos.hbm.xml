@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="Modelo.videojuegos" table="videojuegos">
+		<id name="ID" type="int">
+			<column name="ID" not-null="true" />
+		</id>
+
+		<property name="Nombre" type="string">
+			<column name="Nombre" length="255" not-null="false" />
+		</property>
+		
+		<property name="Fecha_Lanzamiento" type="string">
+			<column name="Fecha_Lanzamiento" length="255" not-null="false" />
+		</property>
+		
+		<property name="Desarrollador" type="string">
+			<column name="Desarrollador" length="255" not-null="false" />
+		</property>
+		
+		<property name="Plataforma" type="string">
+			<column name="Plataforma" length="255" not-null="false" />
+		</property>
+		
+
+ 
+	</class>
+
+</hibernate-mapping>

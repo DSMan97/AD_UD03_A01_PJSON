@@ -1,0 +1,10 @@
+ID: 0
+Nombre: Super
+Fecha de Lanzamiento: ayer
+Desarrollador: Nintendo
+Plataforma: DS
+ID: 1
+Nombre: Uncharted
+Fecha de Lanzamiento: 20/11/2007
+Desarrollador: Naughty Dog
+Plataforma: PS3
