@@ -5,5 +5,5 @@ ID: 2
 Nombre: Princesa Peach
 id_juego: 0
 ID: 3
-Nombre: Princesa Peach3
+Nombre: Bowser1
 id_juego: 0

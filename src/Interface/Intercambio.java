@@ -2,8 +2,9 @@ package Interface;
 
 import java.util.HashMap;
 
-import Videojuegos.Personajes;
-import Videojuegos.Videojuego;
+
+import Modelo.Personajes;
+import Modelo.Videojuego;
 
 public interface Intercambio {
 

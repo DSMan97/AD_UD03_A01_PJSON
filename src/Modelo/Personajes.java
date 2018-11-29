@@ -2,15 +2,34 @@ package Modelo;
 
 
 
-public class personajes {
+public class Personajes {
 	
 	private int ID_per;
 	private String Nombre_Personaje;
 	private int juego;
+	private Videojuego mjuego;
 	//Constructor de la tabla personajes
-	public personajes(){
+	public Personajes(){
 		
 	}
+	
+	
+	public Videojuego getMjuego() {
+		return mjuego;
+	}
+
+
+	public void setMjuego(Videojuego mjuego) {
+		this.mjuego = mjuego;
+	}
+
+
+	public Personajes( String nombre_Personaje, int id_juegotxt) {
+		
+		this.Nombre_Personaje = nombre_Personaje;
+		this.juego = id_juegotxt;
+	}
+	
 	
 	//getters y setters de los atributos
 	public int getID_per() {

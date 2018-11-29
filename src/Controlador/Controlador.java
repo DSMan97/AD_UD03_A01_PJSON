@@ -5,10 +5,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import BD_Manager.BD_Manager;
-import Videojuegos.Personajes;
-import Videojuegos.Videojuego;
+import Modelo.Personajes;
+import Modelo.Videojuego;
 import Vistas.*;
-import Interface.Intercambio;
 import FileManager.FileManager;
 import HibernateManager.HibernateManager;
 

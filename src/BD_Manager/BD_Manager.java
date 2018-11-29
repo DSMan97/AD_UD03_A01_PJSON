@@ -20,8 +20,8 @@ import java.util.Scanner;
 import java.util.Map.Entry;
 
 import Modelo.Modelo;
-import Videojuegos.Personajes;
-import Videojuegos.Videojuego;
+import Modelo.Personajes;
+import Modelo.Videojuego;
 import Interface.Intercambio;
 import Vistas.Inicio;
 import Controlador.Controlador;
@@ -96,7 +96,7 @@ public class BD_Manager implements Intercambio {
 		try {
 
 			BufferedReader brf = new BufferedReader(new FileReader(archivo_personajes));
-
+			Personajes mp = new Personajes();
 			String linea2;
 			while ((linea2 = brf.readLine()) != null) {
 				String idtxt = linea2.substring(4);
@@ -104,6 +104,7 @@ public class BD_Manager implements Intercambio {
 				String nombre_Personaje = brf.readLine().substring(8);
 				String id_Juegotxt = brf.readLine().substring(10);
 				int id_Juego = Integer.parseInt(id_Juegotxt);
+				
 
 				Personajes mPersonaje = new Personajes(nombre_Personaje, id_Juego);
 				ListaPersonajes.put(id, mPersonaje);
@@ -117,7 +118,7 @@ public class BD_Manager implements Intercambio {
 			for (Entry<Integer, Personajes> entry1 : ListaPersonajes.entrySet()) {
 				String cargar2 = "INSERT INTO `personajes`(`ID`, `Nombre_Personaje`, `ID_Juego`) VALUES ("
 						+ entry1.getKey() + "," + "'" + entry1.getValue().getNombre_Personaje() + "'" + "," + "'"
-						+ entry1.getValue().getID_Juego() + "'" + ")";
+						+ entry1.getValue().getjuego() + "'" + ")";
 
 				pstm1 = mModelo.conexion.prepareStatement(cargar2);
 				rset1 = pstm1.executeUpdate();
@@ -179,7 +180,7 @@ public class BD_Manager implements Intercambio {
 			for (Entry<Integer, Personajes> entry : ListaPersonajes.entrySet()) {
 				String cargar = "INSERT INTO `personajes`(`ID`, `Nombre_Personaje`, `ID_Juego`) VALUES ("
 						+ entry.getKey() + "," + "'" + entry.getValue().getNombre_Personaje() + "'" + "," + "'"
-						+ entry.getValue().getID_Juego() + "'" + ")";
+						+ entry.getValue().getjuego() + "'" + ")";
 				pstm = mModelo.conexion.prepareStatement(cargar);
 				int rset = pstm.executeUpdate();
 			}

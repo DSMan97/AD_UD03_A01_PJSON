@@ -29,10 +29,8 @@ import java.util.Scanner;
 
 import Interface.Intercambio;
 import Modelo.Modelo;
-import Modelo.personajes;
-import Modelo.videojuegos;
-import Videojuegos.Personajes;
-import Videojuegos.Videojuego;
+import Modelo.Personajes;
+import Modelo.Videojuego;
 import Vistas.Inicio;
 
 public class FileManager implements Intercambio {
@@ -123,7 +121,7 @@ public class FileManager implements Intercambio {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(archivo_personajes, true));
 			for (Entry<Integer, Personajes> entry : listaPersonajes.entrySet()) {
 				bw.write("ID: " + entry.getKey() + "\n" + "Nombre: " + entry.getValue().getNombre_Personaje() + "\n"
-						+ "id_juego: " + entry.getValue().getID_Juego() + "\n");
+						+ "id_juego: " + entry.getValue().getjuego() + "\n");
 			}
 			bw.close();
 		} catch (IOException e2) {
@@ -202,7 +200,7 @@ public class FileManager implements Intercambio {
 			for (Entry<Integer, Personajes> entry : listaPersonajes.entrySet()) {
 
 				bw.write("ID: " + entry.getKey() + "\n" + "Nombre: " + entry.getValue().getNombre_Personaje() + "\n"
-						+ "ID_Juego: " + entry.getValue().getID_Juego() + "\n");
+						+ "ID_Juego: " + entry.getValue().getjuego() + "\n");
 			}
 			bw.close();
 			mControlador.Cargar_Inicio();

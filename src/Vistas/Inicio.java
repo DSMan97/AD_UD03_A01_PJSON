@@ -37,10 +37,8 @@ import HibernateManager.HibernateManager;
 import Interface.Intercambio;
 import Main.Main;
 import Modelo.Modelo;
-import Modelo.personajes;
-import Modelo.videojuegos;
-import Videojuegos.Personajes;
-import Videojuegos.Videojuego;
+import Modelo.Personajes;
+import Modelo.Videojuego;
 
 public class Inicio {
 	int id = 0;
@@ -194,7 +192,7 @@ public class Inicio {
 		for (Entry<Integer, Personajes> videojuego : listaPersonajes.entrySet()) {
 			System.out.println("ID: " + videojuego.getKey().toString());
 			System.out.println("Nombre: " + videojuego.getValue().getNombre_Personaje());
-			System.out.println("ID_Juego: " + videojuego.getValue().getID_Juego() + "\n");
+			System.out.println("ID_Juego: " + videojuego.getValue().getjuego() + "\n");
 		}
 	}
 
@@ -305,7 +303,7 @@ public class Inicio {
 			System.out.println("ID_Juego: ");
 			String id_juegotxt = scanner.nextLine();
 			int id_juego = Integer.parseInt(id_juegotxt);
-
+			
 			Personajes mPersonaje = new Personajes(namePtxt, id_juego);
 
 			listaPersonajes.put(idper, mPersonaje);
@@ -516,7 +514,7 @@ public class Inicio {
 		for (Entry<Integer, Personajes> videojuego : listaPersonajes.entrySet()) {
 			System.out.println("ID: " + videojuego.getKey().toString());
 			System.out.println("Nombre: " + videojuego.getValue().getNombre_Personaje());
-			System.out.println("ID_Juego: " + videojuego.getValue().getID_Juego());
+			System.out.println("ID_Juego: " + videojuego.getValue().getjuego());
 		}
 	}
 
@@ -531,7 +529,7 @@ public class Inicio {
 		String idtxt = scanner.nextLine();
 		id = Integer.parseInt(idtxt);
 		while (videojuegositerador.hasNext()) {
-			videojuegos vdo = (videojuegos) videojuegositerador.next();
+			Videojuego vdo = (Videojuego) videojuegositerador.next();
 
 			if (id == (vdo.getID())) {
 
@@ -571,7 +569,7 @@ public class Inicio {
 			int idper = Integer.parseInt(idtxt);
 
 			while (personajesiterador.hasNext()) {
-				personajes per = (personajes) personajesiterador.next();
+				Personajes per = (Personajes) personajesiterador.next();
 
 				if (idper == (per.getID_per())) {
 					System.err.println("Este ID ya existe, por favor introduzca otro\n");
@@ -579,6 +577,7 @@ public class Inicio {
 					mControlador.InsertarPerHB();
 
 				}
+				
 				per.setjuego(idper);
 			}
 			System.out.println("Nombre del Personaje: ");
@@ -634,7 +633,7 @@ public class Inicio {
 	public void EliminarDatosPerHB (HashMap<Integer, Personajes> listaPersonajes ) {
 		Controlador mControlador = new Controlador();
 		mControlador.ImprimirPersonajesHB();
-		System.out.println("Nombre del personaje que desea borar: ");
+		System.out.println("Nombre del personaje que desea borrar: ");
 		Scanner scanner = new Scanner(System.in);
 		String nametxt = scanner.nextLine();
 		

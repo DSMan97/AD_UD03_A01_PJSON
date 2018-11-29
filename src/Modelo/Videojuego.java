@@ -1,6 +1,6 @@
 package Modelo;
 
-public class videojuegos {
+public class Videojuego {
 	
 	private int ID;
 	private String Nombre;
@@ -9,7 +9,16 @@ public class videojuegos {
 	private String Plataforma;
 	
 	// constructor de la tabla de videojuegos
-	public videojuegos() {
+	public Videojuego() {
+		
+	}
+	
+	public Videojuego( String Nombre, String Fecha, String Desarrollador, String Plataforma) {
+		this.Nombre = Nombre;
+		this.Fecha_Lanzamiento = Fecha;
+		this.Desarrollador=Desarrollador;
+		this.Plataforma=Plataforma;
+		
 		
 	}
 	//getters y setters de los atributos de la tabla videojuegos
