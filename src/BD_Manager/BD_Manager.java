@@ -56,12 +56,12 @@ public class BD_Manager implements Intercambio {
 			}
 			PreparedStatement pstm;
 
-			//String delrel = "call eliminar_key()";
-			//pstm = mModelo.conexion.prepareStatement(delrel);
-			//int rset = pstm.executeUpdate();
+			String delrel = "call eliminar_key()";
+			pstm = mModelo.conexion.prepareStatement(delrel);
+			int rset = pstm.executeUpdate();
 			String deltabla1 = "DELETE FROM `videojuegos`";
 			pstm = mModelo.conexion.prepareStatement(deltabla1);
-			int rset = pstm.executeUpdate();
+			rset = pstm.executeUpdate();
 
 			for (Entry<Integer, Videojuego> entry : ListaVideojuegos.entrySet()) {
 				String cargar = "INSERT INTO `videojuegos`(`ID`, `Nombre`, `Fecha_Lanzamiento`, `Desarrollador`, `Plataforma`) VALUES ("
@@ -124,9 +124,9 @@ public class BD_Manager implements Intercambio {
 				rset1 = pstm1.executeUpdate();
 
 			}
-			//String addrel1 = "call add_key()";
-			//pstm1 = mModelo.conexion.prepareStatement(addrel1);
-			//rset1 = pstm1.executeUpdate();
+			String addrel1 = "call add_key()";
+			pstm1 = mModelo.conexion.prepareStatement(addrel1);
+			rset1 = pstm1.executeUpdate();
 
 			brf.close();
 		} catch (IOException | SQLException e) {
