@@ -191,6 +191,7 @@ public class Controlador {
 	public void LeerPersonajes_JSON() {
 		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
 		mJSON.lee();
+		mJSON.
 	}
 
 

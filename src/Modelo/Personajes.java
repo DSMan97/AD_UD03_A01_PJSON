@@ -14,6 +14,9 @@ public class Personajes {
 	}
 	
 	
+
+
+
 	public Videojuego getMjuego() {
 		return mjuego;
 	}
@@ -52,4 +55,18 @@ public class Personajes {
 		this.juego = juego;
 	}
 
+
+	public String toString(){
+		String aux ="";
+		
+		aux += "------------------------------------------";
+		aux += "\n	ID: " + this.ID_per;
+		aux += "\n	Nombre: " + this.Nombre_Personaje;
+		aux += "\n	Videojuego: " + this.juego;
+		aux += "\n------------------------------------------";
+		
+		return aux;
+	}
+
+	
 }

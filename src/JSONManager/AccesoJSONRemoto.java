@@ -35,12 +35,12 @@ public class AccesoJSONRemoto {
 
 			String url = SERVER_PATH + GET_Personaje; // Sacadas de configuracion
 
-			// System.out.println("La url a la que lanzamos la petición es " +
-			// url); // Traza para pruebas
+			System.out.println("La url a la que lanzamos la petición es " +
+			 url); // Traza para pruebas
 
 			String response = encargadoPeticiones.getRequest(url);
 
-			// System.out.println(response); // Traza para pruebas
+			 System.out.println(response); // Traza para pruebas
 
 			// Parseamos la respuesta y la convertimos en un JSONObject
 			JSONObject respuesta = (JSONObject) JSONValue.parse(response.toString());

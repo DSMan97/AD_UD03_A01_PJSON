@@ -703,6 +703,7 @@ public class Inicio {
 			case 2:
 
 				mControlador.LeerPersonajes_JSON();
+
 			default:
 				break;
 			}
