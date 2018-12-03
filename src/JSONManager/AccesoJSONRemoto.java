@@ -17,7 +17,7 @@ public class AccesoJSONRemoto {
 
 		encargadoPeticiones = new ApiRequests();
 
-		SERVER_PATH = "http://localhost/Jaime/ServidoresJSON/pruebasJSON/";
+		SERVER_PATH = "http://localhost/json_repo/";
 		GET_Personaje = "leePersonajes.php";
 		SET_Personaje = "escribirPersonajes.php";
 
