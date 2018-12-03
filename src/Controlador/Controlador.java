@@ -8,6 +8,7 @@ import BD_Manager.BD_Manager;
 import Modelo.Personajes;
 import Modelo.Videojuego;
 import Vistas.*;
+import JSONManager.*;
 import FileManager.FileManager;
 import HibernateManager.HibernateManager;
 
@@ -186,6 +187,12 @@ public class Controlador {
 		Inicio mVista = new Inicio();
 		mVista.EliminarDatosPerHB(listaPersonajes);
 	}
+	
+	public void LeerPersonajes_JSON() {
+		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
+		mJSON.lee();
+	}
+
 
 	public void Cargar_Inicio() {
 		try {

@@ -46,7 +46,7 @@ public class Inicio {
 	private String archivo_personajes = "src/Modelo/personajes.txt";
 
 	public void CargarMenuPrincipal() throws SQLException, IOException {
-		String menu = "¿En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate";
+		String menu = "¿En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate + \"3:JSON";
 		System.out.println(menu);
 		Scanner opt = new Scanner(System.in);
 		System.out.print("Elija una opción:  ");
@@ -58,6 +58,9 @@ public class Inicio {
 		case 2:
 			CargarMenuHibernate();
 			break;
+		case 3:
+			CargarMenuJSON();
+			break;
 
 		default:
 			System.err.println("Dato mal introducido");
@@ -65,6 +68,8 @@ public class Inicio {
 			break;
 		}
 	}
+
+	
 
 	public void CargarMenu() throws SQLException, IOException {
 		Controlador mControlador = new Controlador();
@@ -644,4 +649,106 @@ public class Inicio {
 		
 		
 	}
+	
+	public void CargarMenuJSON() {
+		Controlador mControlador = new Controlador();
+
+		// TODO Auto-generated method stub
+		System.out.println("1: Copiar BBDD a fichero");
+		System.out.println("2: Copiar fichero a BBDD");
+		System.out.println("3: Leer BBDD");
+		System.out.println("4: Añadir BBDD");
+		System.out.println("5: Eliminar BBDD");
+
+		Scanner opt = new Scanner(System.in);
+		System.out.print("Elija una opción:  ");
+		int eleccion = opt.nextInt();
+		switch (eleccion) {
+		case 1:
+
+			System.out.println("  1: Pasar tabla Videojuegos a Fichero");
+			System.out.println("  2: Pasar tabla Personajes a Fichero");
+			Scanner opt1 = new Scanner(System.in);
+			System.out.print("    Elija una opción:  ");
+			int eleccion1 = opt1.nextInt();
+			switch (eleccion1) {
+			case 1:
+				mControlador.BBDD2TXTHB();
+				break;
+			case 2:
+
+				mControlador.BBDD2TXTPerHB();
+				break;
+			default:
+				break;
+
+			}
+			break;
+
+		case 2:
+			
+			mControlador.TXT2BBDDHB();
+
+			break;
+		case 3:
+			System.out.println("  1: Leer Tabla Videojuegos");
+			System.out.println("  2: Leer Tabla Personajes");
+			Scanner opt3 = new Scanner(System.in);
+			System.out.print("    Elija una opción:  ");
+			int eleccion3 = opt3.nextInt();
+			switch (eleccion3) {
+			case 1:
+				
+				break;
+			case 2:
+
+				mControlador.LeerPersonajes_JSON();
+			default:
+				break;
+			}
+
+			break;
+		case 4:
+			System.out.println("   1: Insertar un Videojuego");
+			System.out.println("   2: Insertar un Personajes");
+			Scanner opt4 = new Scanner(System.in);
+			System.out.print("     Elija una opción:  ");
+			int eleccion4 = opt4.nextInt();
+			switch (eleccion4) {
+			case 1:
+				
+				mControlador.InsertarHB();
+				break;
+			case 2:
+			
+				mControlador.InsertarPerHB();
+			default:
+				break;
+			}
+
+			break;
+		case 5:
+			System.out.println("   1: Eliminar un Videojuego");
+			System.out.println("   2: Eliminar un Personaje");
+			Scanner opt5 = new Scanner(System.in);
+			System.out.print("     Elija una opción:  ");
+			int eleccion5 = opt5.nextInt();
+			switch (eleccion5) {
+			case 1:
+				
+				 mControlador.EliminarHB();
+				break;
+			case 2:
+				
+				 mControlador.EliminarPerHB();
+			default:
+				break;
+			}
+		default:
+			System.out.println("Dato mal introducido");
+			break;
+		}
+	}
+		
+	
 }
