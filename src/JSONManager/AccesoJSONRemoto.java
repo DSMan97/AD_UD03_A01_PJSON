@@ -68,9 +68,9 @@ public class AccesoJSONRemoto {
 						for (int i = 0; i < array.size(); i++) {
 							JSONObject row = (JSONObject) array.get(i);
 
-							nombre = row.get("Nombre_Personaje").toString();
-							id = Integer.parseInt(row.get("ID").toString());
-							id_juego = Integer.parseInt(row.get("ID_Juego").toString());
+							nombre = row.get("nombre").toString();
+							id = Integer.parseInt(row.get("id").toString());
+							id_juego = Integer.parseInt(row.get("id_juego").toString());
 
 							nuevoPer = new Personajes();
 
