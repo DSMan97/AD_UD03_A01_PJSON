@@ -188,10 +188,9 @@ public class Controlador {
 		mVista.EliminarDatosPerHB(listaPersonajes);
 	}
 	
-	public void LeerPersonajes_JSON() {
+	public void leerPersonajes_JSON() {
 		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
 		mJSON.lee();
-		mJSON.
 	}
 
 

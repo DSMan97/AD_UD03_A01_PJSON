@@ -701,8 +701,7 @@ public class Inicio {
 				
 				break;
 			case 2:
-
-				mControlador.LeerPersonajes_JSON();
+				mControlador.leerPersonajes_JSON();
 
 			default:
 				break;

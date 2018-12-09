@@ -6,7 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import Modelo.Personajes;;
+import Modelo.Personajes;
+import Modelo.Videojuego;;
 
 public class AccesoJSONRemoto {
 
@@ -25,7 +26,7 @@ public class AccesoJSONRemoto {
 
 	public HashMap<Integer, Personajes> lee() {
 
-		HashMap<Integer, Personajes> auxhm = new HashMap<Integer, Personajes>();
+		HashMap<Integer, Personajes> listaPersonajes = new HashMap<>();
 
 		try {
 
@@ -74,7 +75,7 @@ public class AccesoJSONRemoto {
 
 							nuevoPer = new Personajes();
 
-							auxhm.put(id, nuevoPer);
+							listaPersonajes.put(id, nuevoPer);
 						}
 
 						System.out.println("Acceso JSON Remoto - Leidos datos correctamente y generado hashmap");
@@ -105,7 +106,7 @@ public class AccesoJSONRemoto {
 			System.exit(-1);
 		}
 
-		return auxhm;
+		return listaPersonajes;
 	}
 
 	public void anadirPersonajeJSON(Personajes auxJugador) {
