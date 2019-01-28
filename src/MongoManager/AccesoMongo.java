@@ -92,7 +92,13 @@ public class AccesoMongo extends Conexion {
 
 	// Método para actualizar un videojuego
 	public void actualizarVideojuego() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ID:");
+		int id = sc.nextInt();
+		Document documento = new Document();
+		documento.put("ID", id);
 		//db.videojuegos.update({Nombre: 'hOLA'},{$set: {Nombre: 'Mario'}})
+		// collectionVideojuegos.updateOne(arg0, arg1);
 		// Esta linea es solo para comprobar que el switch funciona
 		System.out.println("En esta opción actualizaremos un videojuego");
 	}
