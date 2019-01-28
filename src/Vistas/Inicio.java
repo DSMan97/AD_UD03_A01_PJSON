@@ -708,10 +708,14 @@ public class Inicio {
 				
 				break;
 			case 2:
+<<<<<<< HEAD
 
 				//TODO Arreglar esto
 				//mControlador.LeerPersonajes_JSON();
 				
+=======
+				mControlador.leerPersonajes_JSON();
+>>>>>>> branch 'master' of https://github.com/DSMan97/AD_UD03_A01_PJSON.git
 
 			default:
 				break;

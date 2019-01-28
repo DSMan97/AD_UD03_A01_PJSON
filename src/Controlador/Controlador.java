@@ -189,10 +189,17 @@ public class Controlador {
 		mVista.EliminarDatosPerHB(listaPersonajes);
 	}
 	
+<<<<<<< HEAD
 	public void LeerPersonajes_JSON(HashMap<Integer, Personajes>listaPersonajes) {
+=======
+	public void leerPersonajes_JSON() {
+>>>>>>> branch 'master' of https://github.com/DSMan97/AD_UD03_A01_PJSON.git
 		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
 		mJSON.lee();
+<<<<<<< HEAD
 		
+=======
+>>>>>>> branch 'master' of https://github.com/DSMan97/AD_UD03_A01_PJSON.git
 	}
 
 	public void MostrarPersonajesJSON(HashMap<Integer, Personajes>listaPersonajes) {
