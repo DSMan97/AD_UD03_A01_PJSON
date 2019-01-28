@@ -58,12 +58,21 @@ public class AccesoMongo extends Conexion {
 	public void insertarPersonaje() {
 		Scanner sc = new Scanner(System.in);
 		// Esta linea es solo para comprobar que el switch funciona
-		System.out.println("ID:");
-		int id = sc.nextInt();
 		Document documento = new Document();
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
 		documento.put("ID", id);
-		documento.put("Nombre_Personaje", sc.nextLine());
-		documento.put("ID_Juego", sc.nextLine());
+		System.out.println("Nombre_Personaje:");
+		String nombre = sc.nextLine();
+		documento.put("Nombre_Personaje", nombre);
+		//sc.nextLine();
+		System.out.println("ID_Juego");
+		String id_juego = sc.nextLine();
+		documento.put("ID_Juego", id_juego);
+		
+		System.out.println(documento.toString());
+		
 		collectionPersonajes.insertOne(documento);
 		System.out.println("Datos introducidos correctamente");
 	}
