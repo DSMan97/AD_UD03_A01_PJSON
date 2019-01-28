@@ -196,6 +196,7 @@ public class Controlador {
 		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
 		mJSON.lee();
 
+		
 	}
 
 	public void MostrarPersonajesJSON(HashMap<Integer, Personajes> listaPersonajes) {
