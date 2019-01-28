@@ -103,6 +103,7 @@ public class Controlador {
 		HibernateManager mHM = new HibernateManager();
 		mHM.LeerTodosPer();
 	}
+
 	public void ImprimirPersonajesHB() {
 		HibernateManager mHM = new HibernateManager();
 		mHM.LeerTodosPerAux();
@@ -137,6 +138,7 @@ public class Controlador {
 		HibernateManager mHM = new HibernateManager();
 		mHM.Fichero2HBPer();
 	}
+
 	// Llamadas a la Vista
 	public void PedirDatosBD(HashMap<Integer, Videojuego> ListaVideojuegos) {
 		Inicio mVista = new Inicio();
@@ -188,79 +190,74 @@ public class Controlador {
 		Inicio mVista = new Inicio();
 		mVista.EliminarDatosPerHB(listaPersonajes);
 	}
-	
-<<<<<<< HEAD
-	public void LeerPersonajes_JSON(HashMap<Integer, Personajes>listaPersonajes) {
-=======
+
 	public void leerPersonajes_JSON() {
->>>>>>> branch 'master' of https://github.com/DSMan97/AD_UD03_A01_PJSON.git
+
 		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
 		mJSON.lee();
-<<<<<<< HEAD
-		
-=======
->>>>>>> branch 'master' of https://github.com/DSMan97/AD_UD03_A01_PJSON.git
+
 	}
 
-	public void MostrarPersonajesJSON(HashMap<Integer, Personajes>listaPersonajes) {
+	public void MostrarPersonajesJSON(HashMap<Integer, Personajes> listaPersonajes) {
 		Inicio mVista = new Inicio();
 		mVista.sacarPantallaPer(listaPersonajes);
 	}
 
-	//Llamadas a mongodb
-	
-		// LLamada al método leerVideojuegos(accesoTablas) para mostrar los videojuegos
-		public void imprimirVideojuegos() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.leerVideojuegos();
+	// Llamadas a mongodb
 
-		}
+	// LLamada al método leerVideojuegos(accesoTablas) para mostrar los videojuegos
+	public void imprimirVideojuegos() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.leerVideojuegos();
 
-		// LLamada al método leerPersinajes(accesoTablas) para mostrar los personajes
-		public void imprimirPersonajes() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.leerPersonajes();
+	}
 
-		}
+	// LLamada al método leerPersinajes(accesoTablas) para mostrar los personajes
+	public void imprimirPersonajes() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.leerPersonajes();
 
-		// LLamada al método insertarVideojuego(accesoTablas) para insertar un
-		// videojuegos
-		public void anadirVideojuego() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.insertarVideojuego();
-		}
+	}
 
-		// LLamada al método insertarPersonaje(accesoTablas) para insertar un personaje
-		public void anadirPersonaje() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.insertarPersonaje();
-		}
+	// LLamada al método insertarVideojuego(accesoTablas) para insertar un
+	// videojuegos
+	public void anadirVideojuego() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.insertarVideojuego();
+	}
 
-		// LLamada al método borrarVideojuegp(accesoTablas) para borrar un videojuego
-		public void eliminarVideojuego() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.borrarVideojuego();
-		}
+	// LLamada al método insertarPersonaje(accesoTablas) para insertar un personaje
+	public void anadirPersonaje() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.insertarPersonaje();
+	}
 
-		// LLamada al método borrarPersonaje(accesoTablas) para borrar un personaje
-		public void eliminarPersonaje() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.borrarPersonaje();
-		}
+	// LLamada al método borrarVideojuegp(accesoTablas) para borrar un videojuego
+	public void eliminarVideojuego() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.borrarVideojuego();
+	}
 
-		// Llamada al método actualizarVideojuego(accesoTablas) para actualizar un
-		// videojuego
-		public void modificarVideojuego() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.actualizarVideojuego();
-		}
+	// LLamada al método borrarPersonaje(accesoTablas) para borrar un personaje
+	public void eliminarPersonaje() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.borrarPersonaje();
+	}
 
-		// Llamada al método actualizarPersonaje(accesoTablas) para actualizar un
-		// personaje
-		public void modificarPersonaje() {
-			AccesoMongo mTablas = new AccesoMongo();
-			mTablas.actualizarPersonaje();
-		}
+	// Llamada al método actualizarVideojuego(accesoTablas) para actualizar un
+	// videojuego
+	public void modificarVideojuego() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.actualizarVideojuego();
+	}
+
+	// Llamada al método actualizarPersonaje(accesoTablas) para actualizar un
+	// personaje
+	public void modificarPersonaje() {
+		AccesoMongo mTablas = new AccesoMongo();
+		mTablas.actualizarPersonaje();
+	}
+
 	public void Cargar_Inicio() {
 		try {
 			Inicio mVista = new Inicio();

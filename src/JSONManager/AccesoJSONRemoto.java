@@ -6,13 +6,9 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-
 import Modelo.Personajes;
-<<<<<<< HEAD
-=======
 import Modelo.Videojuego;;
 
->>>>>>> branch 'master' of https://github.com/DSMan97/AD_UD03_A01_PJSON.git
 public class AccesoJSONRemoto {
 
 	ApiRequests encargadoPeticiones;
