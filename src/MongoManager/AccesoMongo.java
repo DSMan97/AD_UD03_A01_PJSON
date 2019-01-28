@@ -44,7 +44,6 @@ public class AccesoMongo extends Conexion {
 	public void insertarVideojuego() {
 		Scanner sc = new Scanner(System.in);
 		// Esta linea es solo para comprobar que el switch funciona
-		// System.out.println("En esta opción insertaremos un videojuego");
 		Document documento = new Document();
 		documento.put("ID", sc.nextLine());
 		documento.put("Nombre", sc.nextLine());
@@ -59,9 +58,10 @@ public class AccesoMongo extends Conexion {
 	public void insertarPersonaje() {
 		Scanner sc = new Scanner(System.in);
 		// Esta linea es solo para comprobar que el switch funciona
-		//System.out.println("En esta opción insertaremos un personaje");
+		System.out.println("ID:");
+		int id = sc.nextInt();
 		Document documento = new Document();
-		documento.put("ID", sc.nextLine());
+		documento.put("ID", id);
 		documento.put("Nombre_Personaje", sc.nextLine());
 		documento.put("ID_Juego", sc.nextLine());
 		collectionPersonajes.insertOne(documento);
@@ -92,6 +92,7 @@ public class AccesoMongo extends Conexion {
 
 	// Método para actualizar un videojuego
 	public void actualizarVideojuego() {
+		//db.videojuegos.update({Nombre: 'hOLA'},{$set: {Nombre: 'Mario'}})
 		// Esta linea es solo para comprobar que el switch funciona
 		System.out.println("En esta opción actualizaremos un videojuego");
 	}
