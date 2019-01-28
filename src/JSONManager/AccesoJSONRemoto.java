@@ -1,13 +1,13 @@
 package JSONManager;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-import Modelo.Personajes;;
-
+import Modelo.Personajes;
 public class AccesoJSONRemoto {
 
 	ApiRequests encargadoPeticiones;
@@ -181,5 +181,12 @@ public class AccesoJSONRemoto {
 		}
 
 	}
+	
+	private HashMap<Integer, Personajes> devuelvePeronajes() {
 
+		HashMap<Integer, Personajes> hmAux = lee();
+
+		return hmAux;
+
+	}
 }

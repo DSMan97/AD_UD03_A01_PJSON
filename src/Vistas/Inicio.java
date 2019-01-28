@@ -46,7 +46,7 @@ public class Inicio {
 	private String archivo_personajes = "src/Modelo/personajes.txt";
 
 	public void CargarMenuPrincipal() throws SQLException, IOException {
-		String menu = "¿En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate + \"3:JSON";
+		String menu = "¿En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate\n"+"3:JSON\n"+"4:MongoDB";
 		System.out.println(menu);
 		Scanner opt = new Scanner(System.in);
 		System.out.print("Elija una opción:  ");
@@ -61,6 +61,9 @@ public class Inicio {
 		case 3:
 			CargarMenuJSON();
 			break;
+		case 4:
+			CargarMenuMongo();
+			break;
 
 		default:
 			System.err.println("Dato mal introducido");
@@ -70,6 +73,10 @@ public class Inicio {
 	}
 
 	
+
+	
+
+
 
 	public void CargarMenu() throws SQLException, IOException {
 		Controlador mControlador = new Controlador();
@@ -702,7 +709,9 @@ public class Inicio {
 				break;
 			case 2:
 
-				mControlador.LeerPersonajes_JSON();
+				//TODO Arreglar esto
+				//mControlador.LeerPersonajes_JSON();
+				
 
 			default:
 				break;
@@ -749,7 +758,62 @@ public class Inicio {
 			System.out.println("Dato mal introducido");
 			break;
 		}
+		
+		
+		
+//		public void sacarPantallaPer(HashMap<Integer, Personajes> listaPersonajes) {
+//			for (Entry<Integer, Personajes> videojuego : listaPersonajes.entrySet()) {
+//				System.out.println("ID: " + videojuego.getKey().toString());
+//				System.out.println("Nombre: " + videojuego.getValue().getNombre_Personaje());
+//				System.out.println("ID_Juego: " + videojuego.getValue().getjuego() + "\n");
+//			}
+//		}
 	}
 		
-	
+private void CargarMenuMongo() {
+	Controlador mControlador = new Controlador();
+	// En esta linea definimos la posibilidad de elegir las distintas opciones
+	Scanner eleccion = new Scanner(System.in);
+	System.out.println("¿Que quieres hacer?" + "\n");
+	System.out.println("1: Leer tabla videojuegos");
+	System.out.println("2: Leer tabla personaje");
+	System.out.println("3: Insertar videojuego");
+	System.out.println("4: Insertar personaje");
+	System.out.println("5. Borrar videojuego");
+	System.out.println("6. Borrar personaje");
+	System.out.println("7. Actualizar videojuego");
+	System.out.println("8. Actualizar personaje");
+	// Declaración del switch
+	int opciones = eleccion.nextInt();
+	switch (opciones) {
+	case 1:
+		mControlador.imprimirVideojuegos();
+		break;
+	case 2:
+		mControlador.imprimirPersonajes();
+		break;
+	case 3:
+		mControlador.anadirVideojuego();
+		break;
+	case 4:
+		mControlador.anadirPersonaje();
+		break;
+	case 5:
+		mControlador.eliminarVideojuego();
+		break;
+	case 6:
+		mControlador.eliminarPersonaje();
+		break;
+	case 7:
+		mControlador.modificarVideojuego();
+		break;
+	case 8:
+		mControlador.modificarPersonaje();
+		break;
+	default:
+		System.out.println("Dato mal introducido");
+		break;
+	}
+		
+	}
 }

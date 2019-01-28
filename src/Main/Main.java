@@ -11,7 +11,6 @@ public class Main {
 		Inicio mVista;
 		mVista = new Inicio();
 		
-		// TODO Auto-generated constructor stub
 
 		mVista.CargarMenuPrincipal();
 		

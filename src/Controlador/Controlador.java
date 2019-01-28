@@ -7,6 +7,7 @@ import java.util.HashMap;
 import BD_Manager.BD_Manager;
 import Modelo.Personajes;
 import Modelo.Videojuego;
+import MongoManager.AccesoMongo;
 import Vistas.*;
 import JSONManager.*;
 import FileManager.FileManager;
@@ -188,13 +189,71 @@ public class Controlador {
 		mVista.EliminarDatosPerHB(listaPersonajes);
 	}
 	
-	public void LeerPersonajes_JSON() {
+	public void LeerPersonajes_JSON(HashMap<Integer, Personajes>listaPersonajes) {
 		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
 		mJSON.lee();
-		mJSON.
+		
 	}
 
+	public void MostrarPersonajesJSON(HashMap<Integer, Personajes>listaPersonajes) {
+		Inicio mVista = new Inicio();
+		mVista.sacarPantallaPer(listaPersonajes);
+	}
 
+	//Llamadas a mongodb
+	
+		// LLamada al método leerVideojuegos(accesoTablas) para mostrar los videojuegos
+		public void imprimirVideojuegos() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.leerVideojuegos();
+
+		}
+
+		// LLamada al método leerPersinajes(accesoTablas) para mostrar los personajes
+		public void imprimirPersonajes() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.leerPersonajes();
+
+		}
+
+		// LLamada al método insertarVideojuego(accesoTablas) para insertar un
+		// videojuegos
+		public void anadirVideojuego() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.insertarVideojuego();
+		}
+
+		// LLamada al método insertarPersonaje(accesoTablas) para insertar un personaje
+		public void anadirPersonaje() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.insertarPersonaje();
+		}
+
+		// LLamada al método borrarVideojuegp(accesoTablas) para borrar un videojuego
+		public void eliminarVideojuego() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.borrarVideojuego();
+		}
+
+		// LLamada al método borrarPersonaje(accesoTablas) para borrar un personaje
+		public void eliminarPersonaje() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.borrarPersonaje();
+		}
+
+		// Llamada al método actualizarVideojuego(accesoTablas) para actualizar un
+		// videojuego
+		public void modificarVideojuego() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.actualizarVideojuego();
+		}
+
+		// Llamada al método actualizarPersonaje(accesoTablas) para actualizar un
+		// personaje
+		public void modificarPersonaje() {
+			AccesoMongo mTablas = new AccesoMongo();
+			mTablas.actualizarPersonaje();
+		}
 	public void Cargar_Inicio() {
 		try {
 			Inicio mVista = new Inicio();
