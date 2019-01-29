@@ -66,13 +66,9 @@ public class AccesoMongo extends Conexion {
 		System.out.println("Nombre_Personaje:");
 		String nombre = sc.nextLine();
 		documento.put("Nombre_Personaje", nombre);
-		//sc.nextLine();
 		System.out.println("ID_Juego");
 		String id_juego = sc.nextLine();
 		documento.put("ID_Juego", id_juego);
-		
-		System.out.println(documento.toString());
-		
 		collectionPersonajes.insertOne(documento);
 		System.out.println("Datos introducidos correctamente");
 	}
@@ -94,9 +90,14 @@ public class AccesoMongo extends Conexion {
 	// Método para borrar un personaje
 	public void borrarPersonaje() {
 		Scanner sc = new Scanner(System.in);
-		// Esta linea es solo para comprobar que el switch funciona
 		
-	
+		Document documento = new Document();
+		System.out.println("Meta Datos del id,nombre del personaje y la id del juego");
+		documento.remove("ID", sc.nextLine());
+		documento.remove("Nombre_Personaje", sc.nextLine());
+		documento.remove("ID_Juego", sc.nextLine());
+		collectionPersonajes.deleteOne(documento);
+		System.out.println("Datos de personajes borrados correctamente");
 	}
 
 	// Método para actualizar un videojuego
