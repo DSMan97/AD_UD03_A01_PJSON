@@ -15,9 +15,9 @@ import com.mongodb.client.MongoDatabase;
 public class AccesoMongo extends Conexion {
 	MongoCollection<Document> collectionVideojuegos = db.getCollection("videojuegos");
 	MongoCollection<Document> collectionPersonajes = db.getCollection("personajes");
+
 	// Método para mostrar la tabla videojuegos
 	public void leerVideojuegos() {
-		
 		FindIterable<Document> busquedaV = collectionVideojuegos.find();
 		MongoCursor<Document> lectura = busquedaV.iterator();
 		System.out.println("Tabla videojuegos:" + "\n");
@@ -30,7 +30,6 @@ public class AccesoMongo extends Conexion {
 
 	// Método para mostrar la tabla personajes
 	public void leerPersonajes() {
-		
 		FindIterable<Document> busquedaP = collectionPersonajes.find();
 		MongoCursor<Document> lecturaP = busquedaP.iterator();
 
@@ -40,16 +39,26 @@ public class AccesoMongo extends Conexion {
 
 	}
 
-
+	// Método para insertar un videojuego
 	public void insertarVideojuego() {
 		Scanner sc = new Scanner(System.in);
-		// Esta linea es solo para comprobar que el switch funciona
 		Document documento = new Document();
-		documento.put("ID", sc.nextLine());
-		documento.put("Nombre", sc.nextLine());
-		documento.put("Fecha_Lanzamiento", sc.nextLine());
-		documento.put("Desarrollador", sc.nextLine());
-		documento.put("Plataforma", sc.nextLine());
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		documento.put("ID", id);
+		System.out.println("Nombre:");
+		String nombre = sc.nextLine();
+		documento.put("Nombre", nombre);
+		System.out.println("Fecha_Lanzamiento:");
+		String fecha = sc.nextLine();
+		documento.put("Fecha_Lanzamiento", fecha);
+		System.out.println("Desarrollador:");
+		String desarrollador = sc.nextLine();
+		documento.put("Desarrollador", desarrollador);
+		System.out.println("Plataforma:");
+		String plataforma = sc.nextLine();
+		documento.put("Plataforma", plataforma);
 		collectionVideojuegos.insertOne(documento);
 		System.out.println("Datos introducidos correctamente");
 	}
@@ -57,7 +66,6 @@ public class AccesoMongo extends Conexion {
 	// Método para insertar un personaje
 	public void insertarPersonaje() {
 		Scanner sc = new Scanner(System.in);
-		// Esta linea es solo para comprobar que el switch funciona
 		Document documento = new Document();
 		System.out.println("ID:");
 		String idTxt = sc.nextLine();
@@ -66,13 +74,10 @@ public class AccesoMongo extends Conexion {
 		System.out.println("Nombre_Personaje:");
 		String nombre = sc.nextLine();
 		documento.put("Nombre_Personaje", nombre);
-		//sc.nextLine();
 		System.out.println("ID_Juego");
 		String id_juego = sc.nextLine();
 		documento.put("ID_Juego", id_juego);
-		
 		System.out.println(documento.toString());
-		
 		collectionPersonajes.insertOne(documento);
 		System.out.println("Datos introducidos correctamente");
 	}
@@ -80,7 +85,6 @@ public class AccesoMongo extends Conexion {
 	// Método para borrar un videojuego
 	public void borrarVideojuego() {
 		Scanner sc = new Scanner(System.in);
-		// Esta linea es solo para comprobar que el switch funciona
 		Document documento = new Document();
 		documento.remove("ID", sc.nextLine());
 		documento.remove("Nombre", sc.nextLine());
@@ -95,8 +99,7 @@ public class AccesoMongo extends Conexion {
 	public void borrarPersonaje() {
 		Scanner sc = new Scanner(System.in);
 		// Esta linea es solo para comprobar que el switch funciona
-		
-	
+
 	}
 
 	// Método para actualizar un videojuego
@@ -106,9 +109,8 @@ public class AccesoMongo extends Conexion {
 		int id = sc.nextInt();
 		Document documento = new Document();
 		documento.put("ID", id);
-		//db.videojuegos.update({Nombre: 'hOLA'},{$set: {Nombre: 'Mario'}})
+		// db.videojuegos.update({Nombre: 'hOLA'},{$set: {Nombre: 'Mario'}})
 		// collectionVideojuegos.updateOne(arg0, arg1);
-		// Esta linea es solo para comprobar que el switch funciona
 		System.out.println("En esta opción actualizaremos un videojuego");
 	}
 
