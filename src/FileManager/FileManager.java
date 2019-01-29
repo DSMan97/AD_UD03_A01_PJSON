@@ -133,7 +133,7 @@ public class FileManager implements Intercambio {
 	}
 
 	@Override
-	public HashMap<Integer, Videojuego> Añadir() {
+	public HashMap<Integer, Videojuego> Annadir() {
 		Modelo mModelo = new Modelo();
 		Controlador mControlador = new Controlador();
 
@@ -174,7 +174,7 @@ public class FileManager implements Intercambio {
 	}
 
 	@Override
-	public HashMap<Integer, Personajes> AñadirPer() {
+	public HashMap<Integer, Personajes> AnnadirPer() {
 
 		Modelo mModelo = new Modelo();
 		Controlador mControlador = new Controlador();

@@ -135,7 +135,7 @@ public class HibernateManager implements Intercambio {
 	}
 
 	@Override
-	public HashMap<Integer, Videojuego> Añadir() {
+	public HashMap<Integer, Videojuego> Annadir() {
 		Videojuego v = new Videojuego();
 		Controlador mControlador = new Controlador();
 
@@ -163,7 +163,7 @@ public class HibernateManager implements Intercambio {
 	}
 
 	@Override
-	public HashMap<Integer, Personajes> AñadirPer() {
+	public HashMap<Integer, Personajes> AnnadirPer() {
 		Personajes p = new Personajes();
 		Controlador mControlador = new Controlador();
 		s.beginTransaction();
