@@ -1,8 +1,15 @@
 package MongoManager;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 import org.bson.Document;
 import com.mongodb.DB;
@@ -12,12 +19,21 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
-public class AccesoMongo extends Conexion {
+import Controlador.Controlador;
+import Interface.Intercambio;
+import Modelo.Modelo;
+import Modelo.Personajes;
+import Modelo.Videojuego;
+import Vistas.Inicio;
+
+public class AccesoMongo extends Conexion implements Intercambio {
 	MongoCollection<Document> collectionVideojuegos = db.getCollection("videojuegos");
 	MongoCollection<Document> collectionPersonajes = db.getCollection("personajes");
+	HashMap<Integer, Videojuego> ListaVideojuegos = new HashMap<Integer, Videojuego>();
+	HashMap<Integer, Personajes> ListaPersonajes = new HashMap<Integer, Personajes>();
 
-	// Método para mostrar la tabla videojuegos
-	public void leerVideojuegos() {
+	// Mï¿½todo para mostrar la tabla videojuegos
+	public FindIterable<Document> leerVideojuegos() {
 		FindIterable<Document> busquedaV = collectionVideojuegos.find();
 		MongoCursor<Document> lectura = busquedaV.iterator();
 		System.out.println("Tabla videojuegos:" + "\n");
@@ -25,10 +41,10 @@ public class AccesoMongo extends Conexion {
 		do {
 			System.out.println(lectura.next());
 		} while (lectura.hasNext());
-
+		return busquedaV;
 	}
 
-	// Método para mostrar la tabla personajes
+	// Mï¿½todo para mostrar la tabla personajes
 	public void leerPersonajes() {
 		FindIterable<Document> busquedaP = collectionPersonajes.find();
 		MongoCursor<Document> lecturaP = busquedaP.iterator();
@@ -39,31 +55,12 @@ public class AccesoMongo extends Conexion {
 
 	}
 
-	// Método para insertar un videojuego
-	public void insertarVideojuego() {
-		Scanner sc = new Scanner(System.in);
-		Document documento = new Document();
-		System.out.println("ID:");
-		String idTxt = sc.nextLine();
-		int id = Integer.parseInt(idTxt);
-		documento.put("ID", id);
-		System.out.println("Nombre:");
-		String nombre = sc.nextLine();
-		documento.put("Nombre", nombre);
-		System.out.println("Fecha_Lanzamiento:");
-		String fecha = sc.nextLine();
-		documento.put("Fecha_Lanzamiento", fecha);
-		System.out.println("Desarrollador:");
-		String desarrollador = sc.nextLine();
-		documento.put("Desarrollador", desarrollador);
-		System.out.println("Plataforma:");
-		String plataforma = sc.nextLine();
-		documento.put("Plataforma", plataforma);
-		collectionVideojuegos.insertOne(documento);
-		System.out.println("Datos introducidos correctamente");
-	}
+	/**
+	 * 
+	 * 
+	 */
 
-	// Método para insertar un personaje
+	// Mï¿½todo para insertar un personaje
 	public void insertarPersonaje() {
 		Scanner sc = new Scanner(System.in);
 		Document documento = new Document();
@@ -82,7 +79,7 @@ public class AccesoMongo extends Conexion {
 		System.out.println("Datos introducidos correctamente");
 	}
 
-	// Método para borrar un videojuego
+	// Mï¿½todo para borrar un videojuego
 	public void borrarVideojuego() {
 		Scanner sc = new Scanner(System.in);
 		Document documento = new Document();
@@ -95,28 +92,135 @@ public class AccesoMongo extends Conexion {
 		System.out.println("Datos borrados correctamente");
 	}
 
-	// Método para borrar un personaje
+	// Mï¿½todo para borrar un personaje
 	public void borrarPersonaje() {
 		Scanner sc = new Scanner(System.in);
 		// Esta linea es solo para comprobar que el switch funciona
 
 	}
 
-	// Método para actualizar un videojuego
-	public void actualizarVideojuego() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("ID:");
-		int id = sc.nextInt();
+	/**
+	 * // Mï¿½todo para actualizar un videojuego public void HashMap<Integer,
+	 * Personajes> actualizarVideojuego() { Inicio mvista = Inicio(); if
+	 * (!nombre.equals("")) { updateName(nombre, oldname); } if
+	 * (!apellido1.equals("")) { updateApellido1(apellido1, oldname); } if
+	 * (!apellido2.equals("")) { updateApellido2(apellido2, oldname); } if (telefono
+	 * != 0) { updateTelefono(telefono, oldname); } if (!email.equals("")) {
+	 * updateEmail(email, oldname); } }
+	 * 
+	 * private void updateName(String nombre, String oldname) { // Mï¿½todo para
+	 * modificar el nombre
+	 * 
+	 * PreparedStatement pstm; try { for (Entry<Integer, Contacto> entry :
+	 * mListaContactos.entrySet()) { String cargar = "UPDATE`contactos` SET `Nombre`
+	 * =" + "'" + entry.getValue().getNombre() + "'" + " Where `Nombre`=" + "'" +
+	 * oldname + "'"; pstm = mModelo.conexion.prepareStatement(cargar);
+	 * pstm.executeUpdate(); } System.out.println("Has modificado correctamente a "
+	 * + nombre); } catch (SQLException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } }
+	 * 
+	 * private void updateApellido1(String apellido1, String oldname) { // Mï¿½todo
+	 * para modificar el primer apellido PreparedStatement pstm; try { for
+	 * (Entry<Integer, Contacto> entry : mListaContactos.entrySet()) { String cargar
+	 * = "UPDATE`contactos` SET `Apellido_1` =" + "'" +
+	 * entry.getValue().getApellido1() + "'" + " Where `Nombre`=" + "'" + oldname +
+	 * "'"; pstm = mModelo.conexion.prepareStatement(cargar); pstm.executeUpdate();
+	 * } System.out.println("Has modificado correctamente a " + oldname); } catch
+	 * (SQLException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+	 * }
+	 * 
+	 * private void updateApellido2(String apellido2, String oldname) { // Mï¿½todo
+	 * para modificar el segundo apellido PreparedStatement pstm; try { for
+	 * (Entry<Integer, Contacto> entry : mListaContactos.entrySet()) { String cargar
+	 * = "UPDATE`contactos` SET `Apellido_2` =" + "'" +
+	 * entry.getValue().getApellido2() + "'" + " Where `Nombre`=" + "'" + oldname +
+	 * "'"; pstm = mModelo.conexion.prepareStatement(cargar); pstm.executeUpdate();
+	 * } System.out.println("Has modificado correctamente a " + oldname); } catch
+	 * (SQLException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+	 * }
+	 * 
+	 * private void updateTelefono(int telefono, String oldname) { // Mï¿½todo para
+	 * modificar el telefono
+	 * 
+	 * PreparedStatement pstm; try { for (Entry<Integer, Contacto> entry :
+	 * mListaContactos.entrySet()) { String cargar = "UPDATE`contactos` SET
+	 * `Telefono` =" + "'" + entry.getValue().getTelefono() + "'" + " Where
+	 * `Nombre`=" + "'" + oldname + "'"; pstm =
+	 * mModelo.conexion.prepareStatement(cargar); pstm.executeUpdate(); }
+	 * System.out.println("Has modificado correctamente a " + oldname); } catch
+	 * (SQLException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+	 * }
+	 * 
+	 * private void updateEmail(String email, String oldname) { // Mï¿½todo para
+	 * modificar el email
+	 * 
+	 * 
+	 * PreparedStatement pstm; try { for (Entry<Integer, Contacto> entry :
+	 * mListaContactos.entrySet()) { String cargar = "UPDATE`contactos` SET `Email`
+	 * =" + "'" + entry.getValue().getEmail() + "'" + " Where `Nombre`=" + "'" +
+	 * oldname + "'"; pstm = mModelo.conexion.prepareStatement(cargar);
+	 * pstm.executeUpdate(); } System.out.println("Has modificado correctamente a "
+	 * + oldname); } catch (SQLException e) { e.printStackTrace(); } }
+	 * 
+	 * Document documento = new Document();
+	 * 
+	 * documento.put("ID", id); // db.videojuegos.update({Nombre: 'hOLA'},{$set:
+	 * {Nombre: 'Mario'}}) // collectionVideojuegos.updateOne(arg0, arg1);
+	 * System.out.println("En esta opciï¿½n actualizaremos un videojuego"); }
+	 * 
+	 * // Mï¿½todo para actualizar un personaje public void actualizarPersonaje() { //
+	 * Esta linea es solo para comprobar que el switch funciona
+	 * System.out.println("En esta opciï¿½n actualizaremos un personaje"); }
+	 */
+	@Override
+	public HashMap<Integer, Videojuego> Annadir() {
+		Controlador mControlador = new Controlador();
+		mControlador.PedirDatosMongoBD(ListaVideojuegos);
 		Document documento = new Document();
-		documento.put("ID", id);
-		// db.videojuegos.update({Nombre: 'hOLA'},{$set: {Nombre: 'Mario'}})
-		// collectionVideojuegos.updateOne(arg0, arg1);
-		System.out.println("En esta opción actualizaremos un videojuego");
+		for (Entry<Integer, Videojuego> entry : ListaVideojuegos.entrySet()) {
+			documento.put("ID", entry.getKey());
+			documento.put("Nombre", entry.getValue().getNombre());
+			documento.put("Fecha_Lanzamiento", entry.getValue().getFecha_Lanzamiento());
+			documento.put("Desarrollador", entry.getValue().getDesarrollador());
+			documento.put("Plataforma", entry.getValue().getPlataforma());
+		}
+
+		
+		collectionVideojuegos.insertOne(documento);
+
+		System.out.println("Datos introducidos correctamente");
+		mControlador.Cargar_Inicio();
+
+		return ListaVideojuegos;
 	}
 
-	// Método para actualizar un personaje
-	public void actualizarPersonaje() {
-		// Esta linea es solo para comprobar que el switch funciona
-		System.out.println("En esta opción actualizaremos un personaje");
+	@Override
+	public HashMap<Integer, Videojuego> LeerTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HashMap<Integer, Personajes> EscribirTodosPer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HashMap<Integer, Personajes> LeerTodosPer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HashMap<Integer, Personajes> AnnadirPer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HashMap<Integer, Videojuego> EscribirTodos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

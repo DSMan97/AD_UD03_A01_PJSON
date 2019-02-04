@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.bson.Document;
+
 import BD_Manager.BD_Manager;
 import Modelo.Personajes;
 import Modelo.Videojuego;
@@ -222,41 +224,45 @@ public class Controlador {
 
 	// LLamada al m�todo insertarVideojuego(accesoTablas) para insertar un
 	// videojuegos
-	public void anadirVideojuego() {
+	
+	public void pedirDatosMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosMongo(ListaVideojuegos);
+	}
+	
+	public void anadirVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.insertarVideojuego();
+		mTablas.Annadir();
 	}
 
 	// LLamada al m�todo insertarPersonaje(accesoTablas) para insertar un personaje
-	public void anadirPersonaje() {
+	public void anadirPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.insertarPersonaje();
 	}
 
 	// LLamada al m�todo borrarVideojuegp(accesoTablas) para borrar un videojuego
-	public void eliminarVideojuego() {
+	public void eliminarVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.borrarVideojuego();
 	}
 
 	// LLamada al m�todo borrarPersonaje(accesoTablas) para borrar un personaje
-	public void eliminarPersonaje() {
+	public void eliminarPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.borrarPersonaje();
 	}
 
-	// Llamada al m�todo actualizarVideojuego(accesoTablas) para actualizar un
-	// videojuego
-	public void modificarVideojuego() {
+	// Llamada al m�todo actualizarVideojuego(accesoTablas) para actualizar un videojuego
+	public void modificarVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.actualizarVideojuego();
+		//mTablas.actualizarVideojuego();
 	}
 
-	// Llamada al m�todo actualizarPersonaje(accesoTablas) para actualizar un
-	// personaje
-	public void modificarPersonaje() {
+	// Llamada al m�todo actualizarPersonaje(accesoTablas) para actualizar un personaje
+	public void modificarPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.actualizarPersonaje();
+		//mTablas.actualizarPersonaje();
 	}
 
 	public void Cargar_Inicio() {
@@ -267,6 +273,12 @@ public class Controlador {
 		} catch (IOException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void PedirDatosMongoBD(HashMap<Integer, Videojuego> listaVideojuegos) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosMongoDB(listaVideojuegos);
+		
 	}
 
 }

@@ -1,6 +1,5 @@
 package Vistas;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,12 +24,15 @@ import BD_Manager.BD_Manager;
 
 import java.util.Map.Entry;
 
+import org.bson.Document;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.sql.MckoiCaseFragment;
 
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCursor;
 import com.mysql.jdbc.util.ResultSetUtil;
 
 import Controlador.Controlador;
@@ -40,6 +42,7 @@ import Main.Main;
 import Modelo.Modelo;
 import Modelo.Personajes;
 import Modelo.Videojuego;
+import MongoManager.AccesoMongo;
 
 public class Inicio {
 	int id = 0;
@@ -47,10 +50,10 @@ public class Inicio {
 	private String archivo_personajes = "src/Modelo/personajes.txt";
 
 	public void CargarMenuPrincipal() throws SQLException, IOException {
-		String menu = "¿En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate\n"+"3:JSON\n"+"4:MongoDB";
+		String menu = "ï¿½En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate\n" + "3:JSON\n" + "4:MongoDB";
 		System.out.println(menu);
 		Scanner opt = new Scanner(System.in);
-		System.out.print("Elija una opción:  ");
+		System.out.print("Elija una opciï¿½n:  ");
 		int option = opt.nextInt();
 		switch (option) {
 		case 1:
@@ -73,12 +76,6 @@ public class Inicio {
 		}
 	}
 
-	
-
-	
-
-
-
 	public void CargarMenu() throws SQLException, IOException {
 		Controlador mControlador = new Controlador();
 
@@ -88,17 +85,17 @@ public class Inicio {
 		System.out.println("3: Copiar BBDD a fichero");
 		System.out.println("4: Copiar fichero a BBDD");
 		System.out.println("5: Leer BBDD");
-		System.out.println("6: Añadir BBDD");
+		System.out.println("6: Aï¿½adir BBDD");
 
 		Scanner opt = new Scanner(System.in);
-		System.out.print("Elija una opción:  ");
+		System.out.print("Elija una opciï¿½n:  ");
 		int eleccion = opt.nextInt();
 		switch (eleccion) {
 		case 1:
 			System.out.println("   1: Crear Fichero Videojuegos");
 			System.out.println("   2: Crear Fichero Personajes");
 			Scanner opt1 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  ");
+			System.out.print("     Elija una opciï¿½n:  ");
 			int eleccion1 = opt1.nextInt();
 			switch (eleccion1) {
 			case 1:
@@ -116,7 +113,7 @@ public class Inicio {
 			System.out.println("   1: Leer Videojuegos");
 			System.out.println("   2: Leer Personajes");
 			Scanner opt2 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  ");
+			System.out.print("     Elija una opciï¿½n:  ");
 			int eleccion2 = opt2.nextInt();
 			switch (eleccion2) {
 			case 1:
@@ -133,7 +130,7 @@ public class Inicio {
 			System.out.println("  1: Pasar tabla Videojuegos a Fichero");
 			System.out.println("  2: Pasar tabla Personajes a Fichero");
 			Scanner opt3 = new Scanner(System.in);
-			System.out.print("    Elija una opción:  ");
+			System.out.print("    Elija una opciï¿½n:  ");
 			int eleccion3 = opt3.nextInt();
 			switch (eleccion3) {
 			case 1:
@@ -155,7 +152,7 @@ public class Inicio {
 			System.out.println("  1: Leer Tabla Videojuegos");
 			System.out.println("  2: Leer Tabla Personajes");
 			Scanner opt5 = new Scanner(System.in);
-			System.out.print("    Elija una opción:  ");
+			System.out.print("    Elija una opciï¿½n:  ");
 			int eleccion5 = opt5.nextInt();
 			switch (eleccion5) {
 			case 1:
@@ -172,7 +169,7 @@ public class Inicio {
 			System.out.println("   1: Insertar un Videojuego");
 			System.out.println("   2: Insertar un Personajes");
 			Scanner opt6 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  ");
+			System.out.print("     Elija una opciï¿½n:  ");
 			int eleccion6 = opt6.nextInt();
 			switch (eleccion6) {
 			case 1:
@@ -316,7 +313,7 @@ public class Inicio {
 			System.out.println("ID_Juego: ");
 			String id_juegotxt = scanner.nextLine();
 			int id_juego = Integer.parseInt(id_juegotxt);
-			
+
 			Personajes mPersonaje = new Personajes(namePtxt, id_juego);
 
 			listaPersonajes.put(idper, mPersonaje);
@@ -372,12 +369,12 @@ public class Inicio {
 				listaPersonajes.put(idper, mPersonaje);
 
 			} else {
-				System.out.print("¡¡¡¡¡No hay ningún juego añadido por favor añade al menos uno!!!!!\n");
-				System.out.print("¿Quieres añadirlo ahora?\n");
+				System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½No hay ningï¿½n juego aï¿½adido por favor aï¿½ade al menos uno!!!!!\n");
+				System.out.print("ï¿½Quieres aï¿½adirlo ahora?\n");
 				System.out.print("   1: SI\n");
 				System.out.print("   2: NO\n");
 				Scanner opt6 = new Scanner(System.in);
-				System.out.print("     Elija una opción:  \n");
+				System.out.print("     Elija una opciï¿½n:  \n");
 				int eleccion4 = opt6.nextInt();
 				switch (eleccion4) {
 				case 1:
@@ -405,7 +402,7 @@ public class Inicio {
 	 * 
 	 * 
 	 * 
-	 * A PARTIR DE AQUÍ MENÚ HIBERNATE
+	 * A PARTIR DE AQUï¿½ MENï¿½ HIBERNATE
 	 * 
 	 * 
 	 * 
@@ -420,11 +417,11 @@ public class Inicio {
 		System.out.println("1: Copiar BBDD a fichero");
 		System.out.println("2: Copiar fichero a BBDD");
 		System.out.println("3: Leer BBDD");
-		System.out.println("4: Añadir BBDD");
+		System.out.println("4: Aï¿½adir BBDD");
 		System.out.println("5: Eliminar BBDD");
 
 		Scanner opt = new Scanner(System.in);
-		System.out.print("Elija una opción:  ");
+		System.out.print("Elija una opciï¿½n:  ");
 		int eleccion = opt.nextInt();
 		switch (eleccion) {
 		case 1:
@@ -432,7 +429,7 @@ public class Inicio {
 			System.out.println("  1: Pasar tabla Videojuegos a Fichero");
 			System.out.println("  2: Pasar tabla Personajes a Fichero");
 			Scanner opt1 = new Scanner(System.in);
-			System.out.print("    Elija una opción:  ");
+			System.out.print("    Elija una opciï¿½n:  ");
 			int eleccion1 = opt1.nextInt();
 			switch (eleccion1) {
 			case 1:
@@ -449,7 +446,7 @@ public class Inicio {
 			break;
 
 		case 2:
-			
+
 			mControlador.TXT2BBDDHB();
 
 			break;
@@ -457,7 +454,7 @@ public class Inicio {
 			System.out.println("  1: Leer Tabla Videojuegos");
 			System.out.println("  2: Leer Tabla Personajes");
 			Scanner opt3 = new Scanner(System.in);
-			System.out.print("    Elija una opción:  ");
+			System.out.print("    Elija una opciï¿½n:  ");
 			int eleccion3 = opt3.nextInt();
 			switch (eleccion3) {
 			case 1:
@@ -475,15 +472,15 @@ public class Inicio {
 			System.out.println("   1: Insertar un Videojuego");
 			System.out.println("   2: Insertar un Personajes");
 			Scanner opt4 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  ");
+			System.out.print("     Elija una opciï¿½n:  ");
 			int eleccion4 = opt4.nextInt();
 			switch (eleccion4) {
 			case 1:
-				
+
 				mControlador.InsertarHB();
 				break;
 			case 2:
-			
+
 				mControlador.InsertarPerHB();
 			default:
 				break;
@@ -494,16 +491,16 @@ public class Inicio {
 			System.out.println("   1: Eliminar un Videojuego");
 			System.out.println("   2: Eliminar un Personaje");
 			Scanner opt5 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  ");
+			System.out.print("     Elija una opciï¿½n:  ");
 			int eleccion5 = opt5.nextInt();
 			switch (eleccion5) {
 			case 1:
-				
-				 mControlador.EliminarHB();
+
+				mControlador.EliminarHB();
 				break;
 			case 2:
-				
-				 mControlador.EliminarPerHB();
+
+				mControlador.EliminarPerHB();
 			default:
 				break;
 			}
@@ -590,7 +587,7 @@ public class Inicio {
 					mControlador.InsertarPerHB();
 
 				}
-				
+
 				per.setjuego(idper);
 			}
 			System.out.println("Nombre del Personaje: ");
@@ -607,12 +604,12 @@ public class Inicio {
 			listaPersonajes.put(idper, mPersonaje);
 
 		} else {
-			System.out.print("¡¡¡¡¡No hay ningún juego añadido por favor añade al menos uno!!!!!\n");
-			System.out.print("¿Quieres añadirlo ahora?\n");
+			System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½No hay ningï¿½n juego aï¿½adido por favor aï¿½ade al menos uno!!!!!\n");
+			System.out.print("ï¿½Quieres aï¿½adirlo ahora?\n");
 			System.out.print("   1: SI\n");
 			System.out.print("   2: NO\n");
 			Scanner opt6 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  \n");
+			System.out.print("     Elija una opciï¿½n:  \n");
 			int eleccion4 = opt6.nextInt();
 			switch (eleccion4) {
 			case 1:
@@ -628,36 +625,36 @@ public class Inicio {
 		}
 
 	}
-	public void EliminarDatosHB (HashMap<Integer, Videojuego> ListaVideojuegos ) {
+
+	public void EliminarDatosHB(HashMap<Integer, Videojuego> ListaVideojuegos) {
 		Scanner scanner = new Scanner(System.in);
 		Controlador mControlador = new Controlador();
 		mControlador.ImprimirVideojuegosHB();
-		System.out.println("Nombre del Videojuego que quiere borrar (se borrarán sus personajes): ");
+		System.out.println("Nombre del Videojuego que quiere borrar (se borrarï¿½n sus personajes): ");
 		String nametxt = scanner.nextLine();
-		String Fecha="";
-		int id=0;
-		String Desarrollador="";
-		String Plataforma="";
+		String Fecha = "";
+		int id = 0;
+		String Desarrollador = "";
+		String Plataforma = "";
 		Videojuego mVideojuego = new Videojuego(nametxt, Fecha, Desarrollador, Plataforma);
 		ListaVideojuegos.put(id, mVideojuego);
-		
-		
+
 	}
-	public void EliminarDatosPerHB (HashMap<Integer, Personajes> listaPersonajes ) {
+
+	public void EliminarDatosPerHB(HashMap<Integer, Personajes> listaPersonajes) {
 		Controlador mControlador = new Controlador();
 		mControlador.ImprimirPersonajesHB();
 		System.out.println("Nombre del personaje que desea borrar: ");
 		Scanner scanner = new Scanner(System.in);
 		String nametxt = scanner.nextLine();
-		
-		int id=0;
-		
+
+		int id = 0;
+
 		Personajes mPersonaje = new Personajes(nametxt, id);
 		listaPersonajes.put(id, mPersonaje);
-		
-		
+
 	}
-	
+
 	public void CargarMenuJSON() {
 		Controlador mControlador = new Controlador();
 
@@ -665,11 +662,11 @@ public class Inicio {
 		System.out.println("1: Copiar BBDD a fichero");
 		System.out.println("2: Copiar fichero a BBDD");
 		System.out.println("3: Leer BBDD");
-		System.out.println("4: Añadir BBDD");
+		System.out.println("4: Aï¿½adir BBDD");
 		System.out.println("5: Eliminar BBDD");
 
 		Scanner opt = new Scanner(System.in);
-		System.out.print("Elija una opción:  ");
+		System.out.print("Elija una opciï¿½n:  ");
 		int eleccion = opt.nextInt();
 		switch (eleccion) {
 		case 1:
@@ -677,7 +674,7 @@ public class Inicio {
 			System.out.println("  1: Pasar tabla Videojuegos a Fichero");
 			System.out.println("  2: Pasar tabla Personajes a Fichero");
 			Scanner opt1 = new Scanner(System.in);
-			System.out.print("    Elija una opción:  ");
+			System.out.print("    Elija una opciï¿½n:  ");
 			int eleccion1 = opt1.nextInt();
 			switch (eleccion1) {
 			case 1:
@@ -694,7 +691,7 @@ public class Inicio {
 			break;
 
 		case 2:
-			
+
 			mControlador.TXT2BBDDHB();
 
 			break;
@@ -702,11 +699,11 @@ public class Inicio {
 			System.out.println("  1: Leer Tabla Videojuegos");
 			System.out.println("  2: Leer Tabla Personajes");
 			Scanner opt3 = new Scanner(System.in);
-			System.out.print("    Elija una opción:  ");
+			System.out.print("    Elija una opciï¿½n:  ");
 			int eleccion3 = opt3.nextInt();
 			switch (eleccion3) {
 			case 1:
-				//LEER VIDEOJUEGOS
+				// LEER VIDEOJUEGOS
 				break;
 			case 2:
 				mControlador.leerPersonajes_JSON();
@@ -719,15 +716,15 @@ public class Inicio {
 			System.out.println("   1: Insertar un Videojuego");
 			System.out.println("   2: Insertar un Personajes");
 			Scanner opt4 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  ");
+			System.out.print("     Elija una opciï¿½n:  ");
 			int eleccion4 = opt4.nextInt();
 			switch (eleccion4) {
 			case 1:
-				
+
 				mControlador.InsertarHB();
 				break;
 			case 2:
-			
+
 				mControlador.InsertarPerHB();
 			default:
 				break;
@@ -738,16 +735,16 @@ public class Inicio {
 			System.out.println("   1: Eliminar un Videojuego");
 			System.out.println("   2: Eliminar un Personaje");
 			Scanner opt5 = new Scanner(System.in);
-			System.out.print("     Elija una opción:  ");
+			System.out.print("     Elija una opciï¿½n:  ");
 			int eleccion5 = opt5.nextInt();
 			switch (eleccion5) {
 			case 1:
-				
-				 mControlador.EliminarHB();
+
+				mControlador.EliminarHB();
 				break;
 			case 2:
-				
-				 mControlador.EliminarPerHB();
+
+				mControlador.EliminarPerHB();
 			default:
 				break;
 			}
@@ -755,9 +752,7 @@ public class Inicio {
 			System.out.println("Dato mal introducido");
 			break;
 		}
-		
-		
-		
+
 //		public void sacarPantallaPer(HashMap<Integer, Personajes> listaPersonajes) {
 //			for (Entry<Integer, Personajes> videojuego : listaPersonajes.entrySet()) {
 //				System.out.println("ID: " + videojuego.getKey().toString());
@@ -766,51 +761,110 @@ public class Inicio {
 //			}
 //		}
 	}
-		
-private void CargarMenuMongo() {
-	Controlador mControlador = new Controlador();
-	// En esta linea definimos la posibilidad de elegir las distintas opciones
-	Scanner eleccion = new Scanner(System.in);
-	System.out.println("¿Que quieres hacer?" + "\n");
-	System.out.println("1: Leer tabla videojuegos");
-	System.out.println("2: Leer tabla personaje");
-	System.out.println("3: Insertar videojuego");
-	System.out.println("4: Insertar personaje");
-	System.out.println("5. Borrar videojuego");
-	System.out.println("6. Borrar personaje");
-	System.out.println("7. Actualizar videojuego");
-	System.out.println("8. Actualizar personaje");
-	// Declaración del switch
-	int opciones = eleccion.nextInt();
-	switch (opciones) {
-	case 1:
-		mControlador.imprimirVideojuegos();
-		break;
-	case 2:
-		mControlador.imprimirPersonajes();
-		break;
-	case 3:
-		mControlador.anadirVideojuego();
-		break;
-	case 4:
-		mControlador.anadirPersonaje();
-		break;
-	case 5:
-		mControlador.eliminarVideojuego();
-		break;
-	case 6:
-		mControlador.eliminarPersonaje();
-		break;
-	case 7:
-		mControlador.modificarVideojuego();
-		break;
-	case 8:
-		mControlador.modificarPersonaje();
-		break;
-	default:
-		System.out.println("Dato mal introducido");
-		break;
+
+	private void CargarMenuMongo() {
+		Controlador mControlador = new Controlador();
+		// En esta linea definimos la posibilidad de elegir las distintas opciones
+		Scanner eleccion = new Scanner(System.in);
+		System.out.println("ï¿½Que quieres hacer?" + "\n");
+		System.out.println("1: Leer tabla videojuegos");
+		System.out.println("2: Leer tabla personaje");
+		System.out.println("3: Insertar videojuego");
+		System.out.println("4: Insertar personaje");
+		System.out.println("5. Borrar videojuego");
+		System.out.println("6. Borrar personaje");
+		System.out.println("7. Actualizar videojuego");
+		System.out.println("8. Actualizar personaje");
+		// Declaraciï¿½n del switch
+		int opciones = eleccion.nextInt();
+		switch (opciones) {
+		case 1:
+			mControlador.imprimirVideojuegos();
+			break;
+		case 2:
+			mControlador.imprimirPersonajes();
+			break;
+		case 3:
+			mControlador.anadirVideojuegoMongo();
+			break;
+		case 4:
+			mControlador.anadirPersonajeMongo();
+			break;
+		case 5:
+			mControlador.eliminarVideojuegoMongo();
+			break;
+		case 6:
+			mControlador.eliminarPersonajeMongo();
+			break;
+		case 7:
+			mControlador.modificarVideojuegoMongo();
+			break;
+		case 8:
+			mControlador.modificarPersonajeMongo();
+			break;
+		default:
+			System.out.println("Dato mal introducido");
+			break;
+		}
+
 	}
-		
+
+	public void PedirDatosMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		Controlador mControlador = new Controlador();
+		AccesoMongo mMongo = new AccesoMongo();
+
+		FindIterable<Document> mListVideojuegos = mMongo.leerVideojuegos();
+
+		Iterator videojuegositerador = mListVideojuegos.iterator();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("ID_Videojuego: ");
+		String idtxt = scanner.nextLine();
+		id = Integer.parseInt(idtxt);
+		while (videojuegositerador.hasNext()) {
+			Videojuego vdo = (Videojuego) videojuegositerador.next();
+			System.out.println(vdo.getID());
+			if (id == (vdo.getID())) {
+
+				System.err.println("Este ID ya existe, por favor introduzca otro\n");
+
+				mControlador.InsertarHB();
+			}
+			vdo.setID(id);
+
+		}
+		System.out.println("Nombre del Videojuego: ");
+		String nametxt = scanner.nextLine();
+		System.out.println("Fecha de Lanzamiento: ");
+		String fechatxt = scanner.nextLine();
+		System.out.println("Plataforma (DS, GBA, N64): ");
+		String plataformatxt = scanner.nextLine();
+		System.out.println("Desarrollador: ");
+		String desarrolladortxt = scanner.nextLine();
+		Videojuego mVideojuego = new Videojuego(nametxt, fechatxt, plataformatxt, desarrolladortxt);
+		ListaVideojuegos.put(id, mVideojuego);
+	}
+
+	public void PedirDatosMongoDB(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		// TODO Coger Datos de la linea 58 de AccesoMongo.java
+		Scanner sc = new Scanner(System.in);
+		Document documento = new Document();
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		documento.put("ID", id);
+		System.out.println("Nombre:");
+		String nombre = sc.nextLine();
+		documento.put("Nombre", nombre);
+		System.out.println("Fecha_Lanzamiento:");
+		String fecha = sc.nextLine();
+		documento.put("Fecha_Lanzamiento", fecha);
+		System.out.println("Desarrollador:");
+		String desarrollador = sc.nextLine();
+		documento.put("Desarrollador", desarrollador);
+		System.out.println("Plataforma:");
+		String plataforma = sc.nextLine();
+		documento.put("Plataforma", plataforma);
+		Videojuego mVideojuego = new Videojuego(documento.getString("Nombre"), documento.getString("Fecha_Lanzamiento"), documento.getString("Desarrollador"), documento.getString("Plataforma"));
+		ListaVideojuegos.put(id,mVideojuego);
 	}
 }
