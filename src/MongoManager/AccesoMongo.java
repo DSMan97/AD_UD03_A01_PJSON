@@ -167,7 +167,6 @@ public class AccesoMongo extends Conexion {
 }
 */
 
-
 package MongoManager;
 
 import java.io.BufferedReader;
@@ -215,7 +214,7 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	}
 
 	// M�todo para mostrar la tabla personajes
-	public FindIterable<Document>  leerPersonajes() {
+	public FindIterable<Document> leerPersonajes() {
 		FindIterable<Document> busquedaP = collectionPersonajes.find();
 		MongoCursor<Document> lecturaP = busquedaP.iterator();
 		System.out.println("Tabla personajes:" + "\n");
@@ -226,60 +225,60 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	}
 
 	// M�todo para insertar un videojuego
-		public void insertarVideojuego() {
-			Scanner sc = new Scanner(System.in);
-			Document documento = new Document();
-			
-			System.out.println("ID:");
-			String idTxt = sc.nextLine();
-			int id = Integer.parseInt(idTxt);
-			documento.put("ID", id);
-			
-			System.out.println("Nombre:");
-			String nombre = sc.nextLine();
-			documento.put("Nombre", nombre);
-			
-			System.out.println("Fecha de lanzamiento:");
-			String fecha = sc.nextLine();
-			documento.put("Fecha_lanzamiento", fecha);
-			
-			System.out.println("Desarrollador:");
-			String desarrollador = sc.nextLine();
-			documento.put("Desarrollador", desarrollador);
-			
-			System.out.println("Plataforma:");
-			String plataforma = sc.nextLine();
-			documento.put("Plataforma", plataforma);
-			
-			System.out.println(documento.toString());
-			collectionPersonajes.insertOne(documento);
-			
-			System.out.println("Datos videojuegos introducidos correctamente");
-			sc.close();
-		}
-	
-	// M�todo para insertar un personaje
-	public void insertarPersonaje() {
+	public void insertarVideojuego() {
 		Scanner sc = new Scanner(System.in);
 		Document documento = new Document();
-		
+
 		System.out.println("ID:");
 		String idTxt = sc.nextLine();
 		int id = Integer.parseInt(idTxt);
 		documento.put("ID", id);
-		
+
+		System.out.println("Nombre:");
+		String nombre = sc.nextLine();
+		documento.put("Nombre", nombre);
+
+		System.out.println("Fecha de lanzamiento:");
+		String fecha = sc.nextLine();
+		documento.put("Fecha_lanzamiento", fecha);
+
+		System.out.println("Desarrollador:");
+		String desarrollador = sc.nextLine();
+		documento.put("Desarrollador", desarrollador);
+
+		System.out.println("Plataforma:");
+		String plataforma = sc.nextLine();
+		documento.put("Plataforma", plataforma);
+
+		System.out.println(documento.toString());
+		collectionPersonajes.insertOne(documento);
+
+		System.out.println("Datos videojuegos introducidos correctamente");
+		sc.close();
+	}
+
+	// M�todo para insertar un personaje
+	public void insertarPersonaje() {
+		Scanner sc = new Scanner(System.in);
+		Document documento = new Document();
+
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		documento.put("ID", id);
+
 		System.out.println("Nombre_Personaje:");
 		String nombre = sc.nextLine();
 		documento.put("Nombre_Personaje", nombre);
-		
+
 		System.out.println("ID_Juego");
 		String id_juego = sc.nextLine();
-		int id_game =Integer.parseInt(id_juego);
+		int id_game = Integer.parseInt(id_juego);
 		documento.put("ID_Juego", id_game);
-		
+
 		System.out.println(documento.toString());
 		collectionPersonajes.insertOne(documento);
-		
+
 		System.out.println("Datos personaje introducidos correctamente");
 		sc.close();
 	}
@@ -288,11 +287,13 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	public void borrarVideojuego() {
 		Scanner sc = new Scanner(System.in);
 		Document documento = new Document();
+
 		documento.remove("ID", sc.nextLine());
 		documento.remove("Nombre", sc.nextLine());
 		documento.remove("Fecha_Lanzamiento", sc.nextLine());
 		documento.remove("Desarrollador", sc.nextLine());
 		documento.remove("Plataforma", sc.nextLine());
+
 		collectionVideojuegos.deleteOne(documento);
 		System.out.println("Datos videojuegos borrados correctamente");
 	}
@@ -300,6 +301,31 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	// M�todo para borrar un personaje
 	public void borrarPersonaje() {
 		Scanner sc = new Scanner(System.in);
+
+		Document documento = new Document();
+
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		documento.put("ID", id);
+
+		System.out.println("Nombre_Personaje:");
+		String nombre = sc.nextLine();
+		documento.put("Nombre_Personaje", nombre);
+
+		System.out.println("ID_Juego");
+		String id_juego = sc.nextLine();
+		int idJuego = Integer.parseInt(id_juego);
+		documento.put("ID_Juego", idJuego);
+
+		System.out.println(documento.toString());
+
+		// ??? siguiente prueba para hacer
+
+		collectionPersonajes.insertMany((List<? extends Document>) collectionPersonajes.deleteOne(documento));
+
+		// collectionPersonajes.deleteOne(documento);
+		System.out.println("Datos de personajes borrados correctamente");
 
 	}
 
@@ -372,8 +398,8 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	 * {Nombre: 'Mario'}}) // collectionVideojuegos.updateOne(arg0, arg1);
 	 * System.out.println("En esta opci�n actualizaremos un videojuego"); }
 	 * 
-	 * // M�todo para actualizar un personaje public void actualizarPersonaje() { //
-	 * Esta linea es solo para comprobar que el switch funciona
+	 * // M�todo para actualizar un personaje public void actualizarPersonaje() {
+	 * // Esta linea es solo para comprobar que el switch funciona
 	 * System.out.println("En esta opci�n actualizaremos un personaje"); }
 	 */
 	@Override
@@ -389,7 +415,6 @@ public class AccesoMongo extends Conexion implements Intercambio {
 			documento.put("Plataforma", entry.getValue().getPlataforma());
 		}
 
-		
 		collectionVideojuegos.insertOne(documento);
 
 		System.out.println("Datos videojuegos introducidos correctamente");
@@ -397,7 +422,14 @@ public class AccesoMongo extends Conexion implements Intercambio {
 
 		return ListaVideojuegos;
 	}
-
+	
+	@Override
+	public HashMap<Integer, Personajes> AnnadirPer() {
+		Controlador mControlador = new Controlador();
+		mControlador.PedirDatosMongoPER(ListaPersonajes);
+		return null;
+	}
+	
 	@Override
 	public HashMap<Integer, Videojuego> LeerTodos() {
 		// TODO Auto-generated method stub
@@ -417,15 +449,9 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	}
 
 	@Override
-	public HashMap<Integer, Personajes> AnnadirPer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public HashMap<Integer, Videojuego> EscribirTodos() {
 		// TODO Auto-generated method stub
 		return null;
-	
+
 	}
 }

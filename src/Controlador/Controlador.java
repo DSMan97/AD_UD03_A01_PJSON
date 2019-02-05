@@ -231,6 +231,12 @@ public class Controlador {
 		
 	}
 	
+	public void PedirDatosMongoPER(HashMap<Integer, Personajes> listaPersonajes) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosMongoPER(listaPersonajes);
+		
+	}
+	
 	public void anadirVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.Annadir();

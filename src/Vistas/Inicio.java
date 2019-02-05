@@ -833,4 +833,27 @@ public class Inicio {
 		Videojuego mVideojuego = new Videojuego(documento.getString("Nombre"), documento.getString("Fecha_Lanzamiento"), documento.getString("Desarrollador"), documento.getString("Plataforma"));
 		ListaVideojuegos.put(id,mVideojuego);
 	}
+	
+	public void PedirDatosMongoPER(HashMap<Integer, Personajes> ListaPersonajes) {
+		// TODO Coger Datos de la linea 58 de AccesoMongo.java
+		Scanner sc = new Scanner(System.in);
+		Document documento = new Document();
+		
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		documento.put("ID", id);
+		
+		System.out.println("Nombre del personaje:");
+		String nombreP = sc.nextLine();
+		documento.put("Nombre_Personaje", nombreP);
+		
+		System.out.println("ID del juego:");
+		String id_juegotxt = sc.nextLine();
+		int id_juego = Integer.parseInt(id_juegotxt);
+		documento.put("ID_Juego", id_juego);
+		
+		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"), documento.getString("ID_Juego"));
+		ListaPersonajes.put(id,mPersonaje);
+	}
 }
