@@ -856,4 +856,24 @@ public class Inicio {
 		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"), documento.getInteger("ID_Juego"));
 		ListaPersonajes.put(id,mPersonaje);
 	}
+	
+	public void MostrarDatosPERMongoDB(HashMap<Integer, Personajes> ListaPersonajes) {
+		
+	}
+	
+	public void EliminarDatosMongoDB (HashMap<Integer, Videojuego> ListaVideojuegos) {
+		
+	}
+	
+	public void EliminarDatosPERMongoDB (HashMap<Integer, Personajes> ListaPersonajes) {
+		
+	}
+	
+	public void ActualizarDatosMongoDB (HashMap<Integer, Videojuego> ListaVideojuegos) {
+		
+	}
+	
+	public void ActualizarDatosPERMongoDB (HashMap<Integer, Personajes> ListaPersonajes) {
+		
+	}
 }

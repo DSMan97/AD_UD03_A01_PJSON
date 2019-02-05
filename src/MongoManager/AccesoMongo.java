@@ -445,8 +445,12 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	
 	@Override
 	public HashMap<Integer, Videojuego> LeerTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		Controlador mControlador = new Controlador();
+		//necesito mostrar datos 
+		mControlador.MostrarDatos(ListaVideojuegos);
+		
+		
+		return ListaVideojuegos;
 	}
 
 	@Override
