@@ -858,7 +858,11 @@ public class Inicio {
 	}
 	
 	public void sacarPantallaPERMongo(HashMap<Integer, Personajes> ListaPersonajes) {
-		
+		for(Entry<Integer, Personajes> personajes : ListaPersonajes.entrySet()) {
+			System.out.println("ID: " + personajes.getKey().toString());
+			System.out.println("Nombre del Personaje: " + personajes.getValue().getNombre_Personaje());
+			System.out.println("Id del Juego: " + personajes.getValue().getjuego());
+		}
 	}
 	
 	public void EliminarDatosMongoDB (HashMap<Integer, Videojuego> ListaVideojuegos) {
