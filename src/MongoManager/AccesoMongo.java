@@ -389,7 +389,20 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	public HashMap<Integer, Personajes> AnnadirPer() {
 		Controlador mControlador = new Controlador();
 		mControlador.PedirDatosMongoPER(ListaPersonajes);
-		return null;
+		Document documento = new Document();
+		for (Entry<Integer, Personajes> entry : ListaPersonajes.entrySet()) {
+			documento.put("ID", entry.getKey());
+			documento.put("Nombre_Personaje", entry.getValue().getNombre_Personaje());
+			documento.put("ID_Juego", entry.getValue().getjuego());
+		}
+		
+		collectionPersonajes.insertOne(documento);
+		
+
+		System.out.println("Datos personajes introducidos correctamente");
+		mControlador.Cargar_Inicio();
+		
+		return ListaPersonajes;
 	}
 	
 	@Override
