@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.bson.Document;
+
 import BD_Manager.BD_Manager;
 import Modelo.Personajes;
 import Modelo.Videojuego;
@@ -33,12 +35,12 @@ public class Controlador {
 
 	public void InsertarBBDD() {
 		BD_Manager mBD = new BD_Manager();
-		mBD.Añadir();
+		mBD.Annadir();
 	}
 
 	public void InsertarBBDDPer() {
 		BD_Manager mBD = new BD_Manager();
-		mBD.AñadirPer();
+		mBD.AnnadirPer();
 	}
 
 	public void TXT2BBDD() {
@@ -69,7 +71,7 @@ public class Controlador {
 
 	public void BBDD2TXT() {
 		FileManager mFM = new FileManager();
-		mFM.Añadir();
+		mFM.Annadir();
 	}
 
 	public void BBDD2TXTPer() {
@@ -111,12 +113,12 @@ public class Controlador {
 
 	public void InsertarHB() {
 		HibernateManager mHM = new HibernateManager();
-		mHM.Añadir();
+		mHM.Annadir();
 	}
 
 	public void InsertarPerHB() {
 		HibernateManager mHM = new HibernateManager();
-		mHM.AñadirPer();
+		mHM.AnnadirPer();
 	}
 
 	public void EliminarHB() {
@@ -206,57 +208,61 @@ public class Controlador {
 
 	// Llamadas a mongodb
 
-	// LLamada al método leerVideojuegos(accesoTablas) para mostrar los videojuegos
+	// LLamada al mï¿½todo leerVideojuegos(accesoTablas) para mostrar los videojuegos
 	public void imprimirVideojuegos() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.leerVideojuegos();
 
 	}
 
-	// LLamada al método leerPersinajes(accesoTablas) para mostrar los personajes
+	// LLamada al mï¿½todo leerPersinajes(accesoTablas) para mostrar los personajes
 	public void imprimirPersonajes() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.leerPersonajes();
 
 	}
 
-	// LLamada al método insertarVideojuego(accesoTablas) para insertar un
+	// LLamada al mï¿½todo insertarVideojuego(accesoTablas) para insertar un
 	// videojuegos
-	public void anadirVideojuego() {
+	
+	public void pedirDatosMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosMongo(ListaVideojuegos);
+	}
+	
+	public void anadirVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.insertarVideojuego();
+		mTablas.Annadir();
 	}
 
-	// LLamada al método insertarPersonaje(accesoTablas) para insertar un personaje
-	public void anadirPersonaje() {
+	// LLamada al mï¿½todo insertarPersonaje(accesoTablas) para insertar un personaje
+	public void anadirPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.insertarPersonaje();
 	}
 
-	// LLamada al método borrarVideojuegp(accesoTablas) para borrar un videojuego
-	public void eliminarVideojuego() {
+	// LLamada al mï¿½todo borrarVideojuegp(accesoTablas) para borrar un videojuego
+	public void eliminarVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.borrarVideojuego();
 	}
 
-	// LLamada al método borrarPersonaje(accesoTablas) para borrar un personaje
-	public void eliminarPersonaje() {
+	// LLamada al mï¿½todo borrarPersonaje(accesoTablas) para borrar un personaje
+	public void eliminarPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.borrarPersonaje();
 	}
 
-	// Llamada al método actualizarVideojuego(accesoTablas) para actualizar un
-	// videojuego
-	public void modificarVideojuego() {
+	// Llamada al mï¿½todo actualizarVideojuego(accesoTablas) para actualizar un videojuego
+	public void modificarVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.actualizarVideojuego();
+		//mTablas.actualizarVideojuego();
 	}
 
-	// Llamada al método actualizarPersonaje(accesoTablas) para actualizar un
-	// personaje
-	public void modificarPersonaje() {
+	// Llamada al mï¿½todo actualizarPersonaje(accesoTablas) para actualizar un personaje
+	public void modificarPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.actualizarPersonaje();
+		//mTablas.actualizarPersonaje();
 	}
 
 	public void Cargar_Inicio() {
@@ -267,6 +273,12 @@ public class Controlador {
 		} catch (IOException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void PedirDatosMongoBD(HashMap<Integer, Videojuego> listaVideojuegos) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosMongoDB(listaVideojuegos);
+		
 	}
 
 }
