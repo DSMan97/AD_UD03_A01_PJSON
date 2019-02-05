@@ -202,9 +202,9 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	HashMap<Integer, Personajes> ListaPersonajes = new HashMap<Integer, Personajes>();
 
 	// M�todo para mostrar la tabla videojuegos
-	public FindIterable<Document> leerVideojuegos() {
+//	public FindIterable<Document> leerVideojuegos() {
 		
-	}
+	//}
 
 	// M�todo para mostrar la tabla personajes
 	public FindIterable<Document> leerPersonajes() {
@@ -411,11 +411,12 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		MongoCursor<Document> lectura = busquedaV.iterator();
 		System.out.println("Tabla videojuegos:" + "\n");
 
-		do {
+		while (lectura.hasNext()) {
 			System.out.println(lectura.next());
-		} while (lectura.hasNext());
-		return busquedaV;
-
+		}
+	
+		
+		
 	}
 
 	@Override

@@ -211,7 +211,8 @@ public class Controlador {
 	// LLamada al m�todo leerVideojuegos(accesoTablas) para mostrar los videojuegos
 	public void imprimirVideojuegos() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.leerVideojuegos();
+		//mTablas.leerVideojuegos();
+		mTablas.LeerTodos();
 
 	}
 

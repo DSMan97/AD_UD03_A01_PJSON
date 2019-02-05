@@ -856,4 +856,14 @@ public class Inicio {
 		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"), documento.getInteger("ID_Juego"));
 		ListaPersonajes.put(id,mPersonaje);
 	}
+	
+	public void sacarPantallaMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		for (Entry<Integer, Videojuego> videojuego : ListaVideojuegos.entrySet()) {
+			System.out.println("ID: " + videojuego.getKey().toString());
+			System.out.println("Nombre: " + videojuego.getValue().getNombre());
+			System.out.println("Plataforma: " + videojuego.getValue().getPlataforma());
+			System.out.println("Fecha de Lanzamiento: " + videojuego.getValue().getFecha_Lanzamiento());
+			System.out.println("Desarrollador: " + videojuego.getValue().getDesarrollador());
+		}
+	}
 }
