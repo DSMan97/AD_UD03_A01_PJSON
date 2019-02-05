@@ -202,16 +202,9 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	HashMap<Integer, Personajes> ListaPersonajes = new HashMap<Integer, Personajes>();
 
 	// M�todo para mostrar la tabla videojuegos
-	public FindIterable<Document> leerVideojuegos() {
-		FindIterable<Document> busquedaV = collectionVideojuegos.find();
-		MongoCursor<Document> lectura = busquedaV.iterator();
-		System.out.println("Tabla videojuegos:" + "\n");
-
-		do {
-			System.out.println(lectura.next());
-		} while (lectura.hasNext());
-		return busquedaV;
-	}
+//	public FindIterable<Document> leerVideojuegos() {
+		
+	//}
 
 	// M�todo para mostrar la tabla personajes
 	public FindIterable<Document> leerPersonajes() {
@@ -224,38 +217,7 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		return busquedaP;
 	}
 
-	// M�todo para insertar un videojuego
-	public void insertarVideojuego() {
-		Scanner sc = new Scanner(System.in);
-		Document documento = new Document();
 
-		System.out.println("ID:");
-		String idTxt = sc.nextLine();
-		int id = Integer.parseInt(idTxt);
-		documento.put("ID", id);
-
-		System.out.println("Nombre:");
-		String nombre = sc.nextLine();
-		documento.put("Nombre", nombre);
-
-		System.out.println("Fecha de lanzamiento:");
-		String fecha = sc.nextLine();
-		documento.put("Fecha_lanzamiento", fecha);
-
-		System.out.println("Desarrollador:");
-		String desarrollador = sc.nextLine();
-		documento.put("Desarrollador", desarrollador);
-
-		System.out.println("Plataforma:");
-		String plataforma = sc.nextLine();
-		documento.put("Plataforma", plataforma);
-
-		System.out.println(documento.toString());
-		collectionPersonajes.insertOne(documento);
-
-		System.out.println("Datos videojuegos introducidos correctamente");
-		sc.close();
-	}
 
 	// M�todo para insertar un personaje
 	public void insertarPersonaje() {
@@ -445,13 +407,22 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	
 	@Override
 	public HashMap<Integer, Videojuego> LeerTodos() {
+//solo esta comentado lo que tira error
 		Controlador mControlador = new Controlador();
 		//necesito mostrar datos 
 		mControlador.MostrarDatos(ListaVideojuegos);
 		
 		
 		return ListaVideojuegos;
-	}
+
+		//FindIterable<Document> busquedaV = collectionVideojuegos.find();
+		//MongoCursor<Document> lectura = busquedaV.iterator();
+	//	System.out.println("Tabla videojuegos:" + "\n");
+
+		//while (lectura.hasNext()) {
+		//	System.out.println(lectura.next());
+		}
+	
 
 	@Override
 	public HashMap<Integer, Personajes> EscribirTodosPer() {

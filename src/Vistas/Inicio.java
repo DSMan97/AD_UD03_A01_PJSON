@@ -857,7 +857,7 @@ public class Inicio {
 		ListaPersonajes.put(id,mPersonaje);
 	}
 	
-	public void MostrarDatosPERMongoDB(HashMap<Integer, Personajes> ListaPersonajes) {
+	public void sacarPantallaPERMongo(HashMap<Integer, Personajes> ListaPersonajes) {
 		
 	}
 	
@@ -874,6 +874,15 @@ public class Inicio {
 	}
 	
 	public void ActualizarDatosPERMongoDB (HashMap<Integer, Personajes> ListaPersonajes) {
-		
+	}
+	public void sacarPantallaMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		for (Entry<Integer, Videojuego> videojuego : ListaVideojuegos.entrySet()) {
+			System.out.println("ID: " + videojuego.getKey().toString());
+			System.out.println("Nombre: " + videojuego.getValue().getNombre());
+			System.out.println("Plataforma: " + videojuego.getValue().getPlataforma());
+			System.out.println("Fecha de Lanzamiento: " + videojuego.getValue().getFecha_Lanzamiento());
+			System.out.println("Desarrollador: " + videojuego.getValue().getDesarrollador());
+		}
+
 	}
 }
