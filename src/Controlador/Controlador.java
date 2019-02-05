@@ -225,9 +225,10 @@ public class Controlador {
 	// LLamada al m�todo insertarVideojuego(accesoTablas) para insertar un
 	// videojuegos
 	
-	public void pedirDatosMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
+	public void PedirDatosMongoBD(HashMap<Integer, Videojuego> listaVideojuegos) {
 		Inicio mVista = new Inicio();
-		mVista.PedirDatosMongo(ListaVideojuegos);
+		mVista.PedirDatosMongoDB(listaVideojuegos);
+		
 	}
 	
 	public void anadirVideojuegoMongo() {
@@ -275,10 +276,6 @@ public class Controlador {
 		}
 	}
 
-	public void PedirDatosMongoBD(HashMap<Integer, Videojuego> listaVideojuegos) {
-		Inicio mVista = new Inicio();
-		mVista.PedirDatosMongoDB(listaVideojuegos);
-		
-	}
+
 
 }

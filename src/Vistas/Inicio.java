@@ -809,40 +809,6 @@ public class Inicio {
 
 	}
 
-	public void PedirDatosMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
-		Controlador mControlador = new Controlador();
-		AccesoMongo mMongo = new AccesoMongo();
-
-		FindIterable<Document> mListVideojuegos = mMongo.leerVideojuegos();
-
-		Iterator videojuegositerador = mListVideojuegos.iterator();
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("ID_Videojuego: ");
-		String idtxt = scanner.nextLine();
-		id = Integer.parseInt(idtxt);
-		while (videojuegositerador.hasNext()) {
-			Videojuego vdo = (Videojuego) videojuegositerador.next();
-			System.out.println(vdo.getID());
-			if (id == (vdo.getID())) {
-
-				System.err.println("Este ID ya existe, por favor introduzca otro\n");
-
-				mControlador.InsertarHB();
-			}
-			vdo.setID(id);
-
-		}
-		System.out.println("Nombre del Videojuego: ");
-		String nametxt = scanner.nextLine();
-		System.out.println("Fecha de Lanzamiento: ");
-		String fechatxt = scanner.nextLine();
-		System.out.println("Plataforma (DS, GBA, N64): ");
-		String plataformatxt = scanner.nextLine();
-		System.out.println("Desarrollador: ");
-		String desarrolladortxt = scanner.nextLine();
-		Videojuego mVideojuego = new Videojuego(nametxt, fechatxt, plataformatxt, desarrolladortxt);
-		ListaVideojuegos.put(id, mVideojuego);
-	}
 
 	public void PedirDatosMongoDB(HashMap<Integer, Videojuego> ListaVideojuegos) {
 		// TODO Coger Datos de la linea 58 de AccesoMongo.java
