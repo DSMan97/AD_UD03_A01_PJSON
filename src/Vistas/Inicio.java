@@ -853,7 +853,7 @@ public class Inicio {
 		int id_juego = Integer.parseInt(id_juegotxt);
 		documento.put("ID_Juego", id_juego);
 		
-		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"), documento.getString("ID_Juego"));
+		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"), documento.getInteger("ID_Juego"));
 		ListaPersonajes.put(id,mPersonaje);
 	}
 }
