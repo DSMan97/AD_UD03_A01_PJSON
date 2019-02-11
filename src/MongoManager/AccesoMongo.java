@@ -407,22 +407,15 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	
 	@Override
 	public HashMap<Integer, Videojuego> LeerTodos() {
-//solo esta comentado lo que tira error
-		Controlador mControlador = new Controlador();
-		//necesito mostrar datos 
-		mControlador.MostrarDatos(ListaVideojuegos);
-		
-		
-		return ListaVideojuegos;
+		FindIterable<Document> busquedaV = collectionVideojuegos.find();
+		MongoCursor<Document> lectura = busquedaV.iterator();
+		System.out.println("Tabla videojuegos:" + "\n");
 
-		//FindIterable<Document> busquedaV = collectionVideojuegos.find();
-		//MongoCursor<Document> lectura = busquedaV.iterator();
-	//	System.out.println("Tabla videojuegos:" + "\n");
-
-		//while (lectura.hasNext()) {
-		//	System.out.println(lectura.next());
+		while (lectura.hasNext()) {
+			System.out.println(lectura.next());
 		}
-	
+		return ListaVideojuegos;
+	}
 
 	@Override
 	public HashMap<Integer, Personajes> EscribirTodosPer() {
