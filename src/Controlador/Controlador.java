@@ -219,7 +219,7 @@ public class Controlador {
 	// LLamada al m�todo leerPersinajes(accesoTablas) para mostrar los personajes
 	public void imprimirPersonajes() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.leerPersonajes();
+		mTablas.LeerTodosPer();
 
 	}
 

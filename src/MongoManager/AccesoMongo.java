@@ -169,55 +169,23 @@ public class AccesoMongo extends Conexion {
 
 package MongoManager;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 import java.util.Map.Entry;
-
 import org.bson.Document;
-import com.mongodb.DB;
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-
 import Controlador.Controlador;
 import Interface.Intercambio;
-import Modelo.Modelo;
 import Modelo.Personajes;
 import Modelo.Videojuego;
-import Vistas.Inicio;
 
 public class AccesoMongo extends Conexion implements Intercambio {
 	MongoCollection<Document> collectionVideojuegos = db.getCollection("videojuegos");
 	MongoCollection<Document> collectionPersonajes = db.getCollection("personajes");
 	HashMap<Integer, Videojuego> ListaVideojuegos = new HashMap<Integer, Videojuego>();
 	HashMap<Integer, Personajes> ListaPersonajes = new HashMap<Integer, Personajes>();
-
-	// M�todo para mostrar la tabla videojuegos
-//	public FindIterable<Document> leerVideojuegos() {
-		
-	//}
-
-	// M�todo para mostrar la tabla personajes
-	public FindIterable<Document> leerPersonajes() {
-		FindIterable<Document> busquedaP = collectionPersonajes.find();
-		MongoCursor<Document> lecturaP = busquedaP.iterator();
-		System.out.println("Tabla personajes:" + "\n");
-		do {
-			System.out.println(lecturaP.next());
-		} while (lecturaP.hasNext());
-		return busquedaP;
-	}
-
-
 
 	// M�todo para insertar un personaje
 	public void insertarPersonaje() {
@@ -245,7 +213,7 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		sc.close();
 	}
 
-	// M�todo para borrar un videojuego
+
 	public void borrarVideojuego() {
 		Scanner sc = new Scanner(System.in);
 		Document documento = new Document();
@@ -260,7 +228,7 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		System.out.println("Datos videojuegos borrados correctamente");
 	}
 
-	// M�todo para borrar un personaje
+
 	public void borrarPersonaje() {
 		Scanner sc = new Scanner(System.in);
 
@@ -284,7 +252,7 @@ public class AccesoMongo extends Conexion implements Intercambio {
 
 		// ??? siguiente prueba para hacer
 
-		collectionPersonajes.insertMany((List<? extends Document>) collectionPersonajes.deleteOne(documento));
+		collectionPersonajes.deleteOne(documento);
 
 		// collectionPersonajes.deleteOne(documento);
 		System.out.println("Datos de personajes borrados correctamente");
@@ -384,7 +352,7 @@ public class AccesoMongo extends Conexion implements Intercambio {
 
 		return ListaVideojuegos;
 	}
-	
+
 	@Override
 	public HashMap<Integer, Personajes> AnnadirPer() {
 		Controlador mControlador = new Controlador();
@@ -395,18 +363,18 @@ public class AccesoMongo extends Conexion implements Intercambio {
 			documento.put("Nombre_Personaje", entry.getValue().getNombre_Personaje());
 			documento.put("ID_Juego", entry.getValue().getjuego());
 		}
-		
+
 		collectionPersonajes.insertOne(documento);
-		
 
 		System.out.println("Datos personajes introducidos correctamente");
 		mControlador.Cargar_Inicio();
-		
+
 		return ListaPersonajes;
 	}
-	
+
 	@Override
 	public HashMap<Integer, Videojuego> LeerTodos() {
+		Controlador mControlador = new Controlador();
 		FindIterable<Document> busquedaV = collectionVideojuegos.find();
 		MongoCursor<Document> lectura = busquedaV.iterator();
 		System.out.println("Tabla videojuegos:" + "\n");
@@ -414,7 +382,10 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		while (lectura.hasNext()) {
 			System.out.println(lectura.next());
 		}
+
+		mControlador.Cargar_Inicio();
 		return ListaVideojuegos;
+
 	}
 
 	@Override
@@ -425,8 +396,17 @@ public class AccesoMongo extends Conexion implements Intercambio {
 
 	@Override
 	public HashMap<Integer, Personajes> LeerTodosPer() {
-		// TODO Auto-generated method stub
-		return null;
+		Controlador mControlador = new Controlador();
+		FindIterable<Document> busquedaP = collectionPersonajes.find();
+		MongoCursor<Document> lecturaP = busquedaP.iterator();
+		System.out.println("Tabla personajes:" + "\n");
+
+		while (lecturaP.hasNext()) {
+			System.out.println(lecturaP.next());
+		}
+
+		mControlador.Cargar_Inicio();
+		return ListaPersonajes;
 	}
 
 	@Override

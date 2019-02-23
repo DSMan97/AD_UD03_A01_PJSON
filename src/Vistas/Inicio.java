@@ -50,10 +50,10 @@ public class Inicio {
 	private String archivo_personajes = "src/Modelo/personajes.txt";
 
 	public void CargarMenuPrincipal() throws SQLException, IOException {
-		String menu = "ï¿½En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate\n" + "3:JSON\n" + "4:MongoDB";
+		String menu = "¿En que modo quieres trabajar?\n" + "1:Normal\n" + "2:Hibernate\n" + "3:JSON\n" + "4:MongoDB";
 		System.out.println(menu);
 		Scanner opt = new Scanner(System.in);
-		System.out.print("Elija una opciï¿½n:  ");
+		System.out.print("Elija una opcion:  ");
 		int option = opt.nextInt();
 		switch (option) {
 		case 1:
@@ -85,17 +85,17 @@ public class Inicio {
 		System.out.println("3: Copiar BBDD a fichero");
 		System.out.println("4: Copiar fichero a BBDD");
 		System.out.println("5: Leer BBDD");
-		System.out.println("6: Aï¿½adir BBDD");
+		System.out.println("6: Añadir BBDD");
 
 		Scanner opt = new Scanner(System.in);
-		System.out.print("Elija una opciï¿½n:  ");
+		System.out.print("Elija una opcion:  ");
 		int eleccion = opt.nextInt();
 		switch (eleccion) {
 		case 1:
 			System.out.println("   1: Crear Fichero Videojuegos");
 			System.out.println("   2: Crear Fichero Personajes");
 			Scanner opt1 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  ");
+			System.out.print("     Elija una opcion:  ");
 			int eleccion1 = opt1.nextInt();
 			switch (eleccion1) {
 			case 1:
@@ -113,7 +113,7 @@ public class Inicio {
 			System.out.println("   1: Leer Videojuegos");
 			System.out.println("   2: Leer Personajes");
 			Scanner opt2 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  ");
+			System.out.print("     Elija una opcion:  ");
 			int eleccion2 = opt2.nextInt();
 			switch (eleccion2) {
 			case 1:
@@ -130,7 +130,7 @@ public class Inicio {
 			System.out.println("  1: Pasar tabla Videojuegos a Fichero");
 			System.out.println("  2: Pasar tabla Personajes a Fichero");
 			Scanner opt3 = new Scanner(System.in);
-			System.out.print("    Elija una opciï¿½n:  ");
+			System.out.print("    Elija una opcion:  ");
 			int eleccion3 = opt3.nextInt();
 			switch (eleccion3) {
 			case 1:
@@ -152,7 +152,7 @@ public class Inicio {
 			System.out.println("  1: Leer Tabla Videojuegos");
 			System.out.println("  2: Leer Tabla Personajes");
 			Scanner opt5 = new Scanner(System.in);
-			System.out.print("    Elija una opciï¿½n:  ");
+			System.out.print("    Elija una opcion:  ");
 			int eleccion5 = opt5.nextInt();
 			switch (eleccion5) {
 			case 1:
@@ -169,7 +169,7 @@ public class Inicio {
 			System.out.println("   1: Insertar un Videojuego");
 			System.out.println("   2: Insertar un Personajes");
 			Scanner opt6 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  ");
+			System.out.print("     Elija una opcion:  ");
 			int eleccion6 = opt6.nextInt();
 			switch (eleccion6) {
 			case 1:
@@ -417,11 +417,11 @@ public class Inicio {
 		System.out.println("1: Copiar BBDD a fichero");
 		System.out.println("2: Copiar fichero a BBDD");
 		System.out.println("3: Leer BBDD");
-		System.out.println("4: Aï¿½adir BBDD");
+		System.out.println("4: Anadir BBDD");
 		System.out.println("5: Eliminar BBDD");
 
 		Scanner opt = new Scanner(System.in);
-		System.out.print("Elija una opciï¿½n:  ");
+		System.out.print("Elija una opcion:  ");
 		int eleccion = opt.nextInt();
 		switch (eleccion) {
 		case 1:
@@ -429,7 +429,7 @@ public class Inicio {
 			System.out.println("  1: Pasar tabla Videojuegos a Fichero");
 			System.out.println("  2: Pasar tabla Personajes a Fichero");
 			Scanner opt1 = new Scanner(System.in);
-			System.out.print("    Elija una opciï¿½n:  ");
+			System.out.print("    Elija una opcion:  ");
 			int eleccion1 = opt1.nextInt();
 			switch (eleccion1) {
 			case 1:
@@ -454,7 +454,7 @@ public class Inicio {
 			System.out.println("  1: Leer Tabla Videojuegos");
 			System.out.println("  2: Leer Tabla Personajes");
 			Scanner opt3 = new Scanner(System.in);
-			System.out.print("    Elija una opciï¿½n:  ");
+			System.out.print("    Elija una opcion:  ");
 			int eleccion3 = opt3.nextInt();
 			switch (eleccion3) {
 			case 1:
@@ -472,7 +472,7 @@ public class Inicio {
 			System.out.println("   1: Insertar un Videojuego");
 			System.out.println("   2: Insertar un Personajes");
 			Scanner opt4 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  ");
+			System.out.print("     Elija una opcion:  ");
 			int eleccion4 = opt4.nextInt();
 			switch (eleccion4) {
 			case 1:
@@ -491,7 +491,7 @@ public class Inicio {
 			System.out.println("   1: Eliminar un Videojuego");
 			System.out.println("   2: Eliminar un Personaje");
 			Scanner opt5 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  ");
+			System.out.print("     Elija una opcion:  ");
 			int eleccion5 = opt5.nextInt();
 			switch (eleccion5) {
 			case 1:
@@ -604,12 +604,12 @@ public class Inicio {
 			listaPersonajes.put(idper, mPersonaje);
 
 		} else {
-			System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½No hay ningï¿½n juego aï¿½adido por favor aï¿½ade al menos uno!!!!!\n");
-			System.out.print("ï¿½Quieres aï¿½adirlo ahora?\n");
+			System.out.print("!!!!!!No hay ningun juego añadido por favor añade al menos uno!!!!!\n");
+			System.out.print("Quieres añadirlo ahora?\n");
 			System.out.print("   1: SI\n");
 			System.out.print("   2: NO\n");
 			Scanner opt6 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  \n");
+			System.out.print("     Elija una opcion:  \n");
 			int eleccion4 = opt6.nextInt();
 			switch (eleccion4) {
 			case 1:
@@ -630,7 +630,7 @@ public class Inicio {
 		Scanner scanner = new Scanner(System.in);
 		Controlador mControlador = new Controlador();
 		mControlador.ImprimirVideojuegosHB();
-		System.out.println("Nombre del Videojuego que quiere borrar (se borrarï¿½n sus personajes): ");
+		System.out.println("Nombre del Videojuego que quiere borrar (se borraran sus personajes): ");
 		String nametxt = scanner.nextLine();
 		String Fecha = "";
 		int id = 0;
@@ -662,7 +662,7 @@ public class Inicio {
 		System.out.println("1: Copiar BBDD a fichero");
 		System.out.println("2: Copiar fichero a BBDD");
 		System.out.println("3: Leer BBDD");
-		System.out.println("4: Aï¿½adir BBDD");
+		System.out.println("4: Anadir BBDD");
 		System.out.println("5: Eliminar BBDD");
 
 		Scanner opt = new Scanner(System.in);
@@ -674,7 +674,7 @@ public class Inicio {
 			System.out.println("  1: Pasar tabla Videojuegos a Fichero");
 			System.out.println("  2: Pasar tabla Personajes a Fichero");
 			Scanner opt1 = new Scanner(System.in);
-			System.out.print("    Elija una opciï¿½n:  ");
+			System.out.print("    Elija una opcion:  ");
 			int eleccion1 = opt1.nextInt();
 			switch (eleccion1) {
 			case 1:
@@ -699,7 +699,7 @@ public class Inicio {
 			System.out.println("  1: Leer Tabla Videojuegos");
 			System.out.println("  2: Leer Tabla Personajes");
 			Scanner opt3 = new Scanner(System.in);
-			System.out.print("    Elija una opciï¿½n:  ");
+			System.out.print("    Elija una opcion:  ");
 			int eleccion3 = opt3.nextInt();
 			switch (eleccion3) {
 			case 1:
@@ -716,7 +716,7 @@ public class Inicio {
 			System.out.println("   1: Insertar un Videojuego");
 			System.out.println("   2: Insertar un Personajes");
 			Scanner opt4 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  ");
+			System.out.print("     Elija una opcion:  ");
 			int eleccion4 = opt4.nextInt();
 			switch (eleccion4) {
 			case 1:
@@ -735,7 +735,7 @@ public class Inicio {
 			System.out.println("   1: Eliminar un Videojuego");
 			System.out.println("   2: Eliminar un Personaje");
 			Scanner opt5 = new Scanner(System.in);
-			System.out.print("     Elija una opciï¿½n:  ");
+			System.out.print("     Elija una opcion:  ");
 			int eleccion5 = opt5.nextInt();
 			switch (eleccion5) {
 			case 1:
@@ -766,7 +766,7 @@ public class Inicio {
 		Controlador mControlador = new Controlador();
 		// En esta linea definimos la posibilidad de elegir las distintas opciones
 		Scanner eleccion = new Scanner(System.in);
-		System.out.println("ï¿½Que quieres hacer?" + "\n");
+		System.out.println("Que quieres hacer?" + "\n");
 		System.out.println("1: Leer tabla videojuegos");
 		System.out.println("2: Leer tabla personaje");
 		System.out.println("3: Insertar videojuego");
