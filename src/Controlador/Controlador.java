@@ -193,12 +193,34 @@ public class Controlador {
 		mVista.EliminarDatosPerHB(listaPersonajes);
 	}
 
+	/**
+	 * Llamadas a JSON
+	 */
+	
+	public void leerVideojuegos_JSON() {
+
+		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
+		mJSON.LeerTodos();
+	}
+	
+	public void PedirDatosJSON(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosJSON(ListaVideojuegos);
+	}
+	public void PedirDatosJSONPer(HashMap<Integer, Personajes> listaPersonajes) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosJSONPER(listaPersonajes);
+	}
+
+	public void MostrarVideojuegosJSON(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		Inicio mVista = new Inicio();
+		mVista.sacarPantalla(ListaVideojuegos);
+	}
+	
 	public void leerPersonajes_JSON() {
 
 		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
-		mJSON.lee();
-
-		
+		mJSON.LeerTodosPer();
 	}
 
 	public void MostrarPersonajesJSON(HashMap<Integer, Personajes> listaPersonajes) {
@@ -206,32 +228,50 @@ public class Controlador {
 		mVista.sacarPantallaPer(listaPersonajes);
 	}
 
-	// Llamadas a mongodb
+	public void annadirVideojuegos_JSON() {
 
-	// LLamada al m�todo leerVideojuegos(accesoTablas) para mostrar los videojuegos
+		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
+		mJSON.Annadir();
+	}
+	public void annadirPersonajes_JSON() {
+
+		AccesoJSONRemoto mJSON = new AccesoJSONRemoto();
+		mJSON.AnnadirPer();
+	}
+	/**
+	 *  Llamadas a mongodb
+	 */
+
 	public void imprimirVideojuegos() {
 		AccesoMongo mTablas = new AccesoMongo();
-		//mTablas.leerVideojuegos();
 		mTablas.LeerTodos();
-
 	}
 
-	// LLamada al m�todo leerPersinajes(accesoTablas) para mostrar los personajes
+
 	public void imprimirPersonajes() {
 		AccesoMongo mTablas = new AccesoMongo();
 		mTablas.LeerTodosPer();
-
 	}
 
-	// LLamada al m�todo insertarVideojuego(accesoTablas) para insertar un
-	// videojuegos
+
 	
 	public void PedirDatosMongoBD(HashMap<Integer, Videojuego> listaVideojuegos) {
 		Inicio mVista = new Inicio();
 		mVista.PedirDatosMongoDB(listaVideojuegos);
 		
 	}
+	public void PedirDatosUpdateMongoBD(HashMap<Integer, Videojuego> listaVideojuegos) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosUpdateMongoDB(listaVideojuegos);
+		
+		
+	}
 	
+	public void PedirDatosMongoUpdatePER(HashMap<Integer, Personajes> listaPersonajes) {
+		Inicio mVista = new Inicio();
+		mVista.PedirDatosUpdateMongoDBPer(listaPersonajes);
+		
+	}
 	public void PedirDatosMongoPER(HashMap<Integer, Personajes> listaPersonajes) {
 		Inicio mVista = new Inicio();
 		mVista.PedirDatosMongoPER(listaPersonajes);
@@ -246,31 +286,31 @@ public class Controlador {
 	// LLamada al m�todo insertarPersonaje(accesoTablas) para insertar un personaje
 	public void anadirPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.insertarPersonaje();
+		mTablas.AnnadirPer();
 	}
 
 	// LLamada al m�todo borrarVideojuegp(accesoTablas) para borrar un videojuego
 	public void eliminarVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.borrarVideojuego();
+		mTablas.BorrarVideojuego();
 	}
 
 	// LLamada al m�todo borrarPersonaje(accesoTablas) para borrar un personaje
 	public void eliminarPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		mTablas.borrarPersonaje();
+		mTablas.BorrarPersonaje();
 	}
 
 	// Llamada al m�todo actualizarVideojuego(accesoTablas) para actualizar un videojuego
 	public void modificarVideojuegoMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		//mTablas.actualizarVideojuego();
+		mTablas.actualizarVideojuego();
 	}
 
 	// Llamada al m�todo actualizarPersonaje(accesoTablas) para actualizar un personaje
 	public void modificarPersonajeMongo() {
 		AccesoMongo mTablas = new AccesoMongo();
-		//mTablas.actualizarPersonaje();
+		mTablas.actualizarPersonaje();
 	}
 
 	public void Cargar_Inicio() {

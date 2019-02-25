@@ -187,77 +187,13 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	HashMap<Integer, Videojuego> ListaVideojuegos = new HashMap<Integer, Videojuego>();
 	HashMap<Integer, Personajes> ListaPersonajes = new HashMap<Integer, Personajes>();
 
-	// M�todo para insertar un personaje
-	public void insertarPersonaje() {
-		Scanner sc = new Scanner(System.in);
-		Document documento = new Document();
-
-		System.out.println("ID:");
-		String idTxt = sc.nextLine();
-		int id = Integer.parseInt(idTxt);
-		documento.put("ID", id);
-
-		System.out.println("Nombre_Personaje:");
-		String nombre = sc.nextLine();
-		documento.put("Nombre_Personaje", nombre);
-
-		System.out.println("ID_Juego");
-		String id_juego = sc.nextLine();
-		int id_game = Integer.parseInt(id_juego);
-		documento.put("ID_Juego", id_game);
-
-		System.out.println(documento.toString());
-		collectionPersonajes.insertOne(documento);
-
-		System.out.println("Datos personaje introducidos correctamente");
-		sc.close();
-	}
+	
 
 
-	public void borrarVideojuego() {
-		Scanner sc = new Scanner(System.in);
-		Document documento = new Document();
-
-		documento.remove("ID", sc.nextLine());
-		documento.remove("Nombre", sc.nextLine());
-		documento.remove("Fecha_Lanzamiento", sc.nextLine());
-		documento.remove("Desarrollador", sc.nextLine());
-		documento.remove("Plataforma", sc.nextLine());
-
-		collectionVideojuegos.deleteOne(documento);
-		System.out.println("Datos videojuegos borrados correctamente");
-	}
 
 
-	public void borrarPersonaje() {
-		Scanner sc = new Scanner(System.in);
 
-		Document documento = new Document();
 
-		System.out.println("ID:");
-		String idTxt = sc.nextLine();
-		int id = Integer.parseInt(idTxt);
-		documento.put("ID", id);
-
-		System.out.println("Nombre_Personaje:");
-		String nombre = sc.nextLine();
-		documento.put("Nombre_Personaje", nombre);
-
-		System.out.println("ID_Juego");
-		String id_juego = sc.nextLine();
-		int idJuego = Integer.parseInt(id_juego);
-		documento.put("ID_Juego", idJuego);
-
-		System.out.println(documento.toString());
-
-		// ??? siguiente prueba para hacer
-
-		collectionPersonajes.deleteOne(documento);
-
-		// collectionPersonajes.deleteOne(documento);
-		System.out.println("Datos de personajes borrados correctamente");
-
-	}
 
 	/**
 	 * // M�todo para actualizar un videojuego public void HashMap<Integer,
@@ -324,8 +260,7 @@ public class AccesoMongo extends Conexion implements Intercambio {
 	 * 
 	 * Document documento = new Document();
 	 * 
-	 * documento.put("ID", id); // db.videojuegos.update({Nombre: 'hOLA'},{$set:
-	 * {Nombre: 'Mario'}}) // collectionVideojuegos.updateOne(arg0, arg1);
+	 * documento.put("ID", id); //
 	 * System.out.println("En esta opci�n actualizaremos un videojuego"); }
 	 * 
 	 * // M�todo para actualizar un personaje public void actualizarPersonaje() {
@@ -338,7 +273,8 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		mControlador.PedirDatosMongoBD(ListaVideojuegos);
 		Document documento = new Document();
 		for (Entry<Integer, Videojuego> entry : ListaVideojuegos.entrySet()) {
-			documento.put("ID", entry.getKey());
+			String idtxt = Integer.toString(entry.getKey());
+			documento.put("ID", idtxt);
 			documento.put("Nombre", entry.getValue().getNombre());
 			documento.put("Fecha_Lanzamiento", entry.getValue().getFecha_Lanzamiento());
 			documento.put("Desarrollador", entry.getValue().getDesarrollador());
@@ -359,9 +295,11 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		mControlador.PedirDatosMongoPER(ListaPersonajes);
 		Document documento = new Document();
 		for (Entry<Integer, Personajes> entry : ListaPersonajes.entrySet()) {
-			documento.put("ID", entry.getKey());
+			String idtxt = Integer.toString(entry.getKey());
+			documento.put("ID", idtxt);
 			documento.put("Nombre_Personaje", entry.getValue().getNombre_Personaje());
-			documento.put("ID_Juego", entry.getValue().getjuego());
+			String idjuegotxt = Integer.toString(entry.getValue().getjuego());
+			documento.put("ID_Juego", idjuegotxt );
 		}
 
 		collectionPersonajes.insertOne(documento);
@@ -415,4 +353,88 @@ public class AccesoMongo extends Conexion implements Intercambio {
 		return null;
 
 	}
+
+
+	@Override
+	public HashMap<Integer, Videojuego> BorrarVideojuego() {
+		Controlador mControlador = new Controlador();
+		mControlador.PedirDatosMongoBD(ListaVideojuegos);
+		Document documento = new Document();
+		for (Entry<Integer, Videojuego> entry : ListaVideojuegos.entrySet()) {
+			String idtxt = Integer.toString(entry.getKey());
+			documento.put("ID", idtxt);
+			documento.put("Nombre", entry.getValue().getNombre());
+			documento.put("Fecha_Lanzamiento", entry.getValue().getFecha_Lanzamiento());
+			documento.put("Desarrollador", entry.getValue().getDesarrollador());
+			documento.put("Plataforma", entry.getValue().getPlataforma());
+		}
+		
+		System.out.println(documento.toString());
+		collectionVideojuegos.deleteOne(documento);
+		System.out.println("Datos videojuegos borrados correctamente");
+		mControlador.Cargar_Inicio();
+		
+		return ListaVideojuegos;
+	}
+
+
+	@Override
+	public HashMap<Integer, Personajes> BorrarPersonaje() {
+		Controlador mControlador = new Controlador();
+		mControlador.PedirDatosMongoPER(ListaPersonajes);
+		Document documento = new Document();
+		for (Entry<Integer, Personajes> entry : ListaPersonajes.entrySet()) {
+			String idtxt = Integer.toString(entry.getKey());
+			documento.put("ID", idtxt);
+			documento.put("Nombre_Personaje", entry.getValue().getNombre_Personaje());
+			String idjuegotxt = Integer.toString(entry.getValue().getjuego());
+			documento.put("ID_Juego", idjuegotxt );
+		}
+		
+		System.out.println(documento.toString());
+		collectionPersonajes.deleteOne(documento);
+		System.out.println("Datos Personajes borrados correctamente");
+		mControlador.Cargar_Inicio();
+		
+		return ListaPersonajes;
+	}
+
+	public void actualizarVideojuego() {
+		Controlador mControlador = new Controlador();
+		mControlador.PedirDatosUpdateMongoBD(ListaVideojuegos);
+		Document documento = new Document();
+		Document id = new Document();
+		for (Entry<Integer, Videojuego> entry : ListaVideojuegos.entrySet()) {
+			String idtxt = Integer.toString(entry.getKey());
+			id.put("ID", idtxt);
+			documento.put("Nombre", entry.getValue().getNombre());
+			documento.put("Fecha_Lanzamiento", entry.getValue().getFecha_Lanzamiento());
+			documento.put("Desarrollador", entry.getValue().getDesarrollador());
+			documento.put("Plataforma", entry.getValue().getPlataforma());
+		}
+		Document set = new Document("$set", documento);
+		System.out.println(documento.toString());
+		 collectionVideojuegos.updateMany(id, set);
+		 mControlador.Cargar_Inicio();
+	}
+
+	public void actualizarPersonaje() {
+		Controlador mControlador = new Controlador();
+		mControlador.PedirDatosMongoUpdatePER(ListaPersonajes);
+		Document documento = new Document();
+		Document id = new Document();
+		for (Entry<Integer, Personajes> entry : ListaPersonajes.entrySet()) {
+			String idtxt = Integer.toString(entry.getKey());
+			id.put("ID", idtxt);
+			documento.put("Nombre_Personaje", entry.getValue().getNombre_Personaje());
+			String idjuegotxt = Integer.toString(entry.getValue().getjuego());
+			documento.put("ID_Juego", idjuegotxt );
+		}
+		Document set = new Document("$set", documento);
+		System.out.println(documento.toString());
+		collectionPersonajes.updateMany(id, set);
+		
+		
+	}
+	
 }

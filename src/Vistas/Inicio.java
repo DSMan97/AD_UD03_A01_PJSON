@@ -369,7 +369,8 @@ public class Inicio {
 				listaPersonajes.put(idper, mPersonaje);
 
 			} else {
-				System.out.print("�����No hay ning�n juego a�adido por favor a�ade al menos uno!!!!!\n");
+				System.out
+						.print("�����No hay ning�n juego a�adido por favor a�ade al menos uno!!!!!\n");
 				System.out.print("�Quieres a�adirlo ahora?\n");
 				System.out.print("   1: SI\n");
 				System.out.print("   2: NO\n");
@@ -703,7 +704,7 @@ public class Inicio {
 			int eleccion3 = opt3.nextInt();
 			switch (eleccion3) {
 			case 1:
-				// LEER VIDEOJUEGOS
+				mControlador.leerVideojuegos_JSON();
 				break;
 			case 2:
 				mControlador.leerPersonajes_JSON();
@@ -721,11 +722,11 @@ public class Inicio {
 			switch (eleccion4) {
 			case 1:
 
-				mControlador.InsertarHB();
+				mControlador.annadirVideojuegos_JSON();
 				break;
 			case 2:
 
-				mControlador.InsertarPerHB();
+				mControlador.annadirPersonajes_JSON();
 			default:
 				break;
 			}
@@ -753,13 +754,6 @@ public class Inicio {
 			break;
 		}
 
-//		public void sacarPantallaPer(HashMap<Integer, Personajes> listaPersonajes) {
-//			for (Entry<Integer, Personajes> videojuego : listaPersonajes.entrySet()) {
-//				System.out.println("ID: " + videojuego.getKey().toString());
-//				System.out.println("Nombre: " + videojuego.getValue().getNombre_Personaje());
-//				System.out.println("ID_Juego: " + videojuego.getValue().getjuego() + "\n");
-//			}
-//		}
 	}
 
 	private void CargarMenuMongo() {
@@ -775,6 +769,8 @@ public class Inicio {
 		System.out.println("6. Borrar personaje");
 		System.out.println("7. Actualizar videojuego");
 		System.out.println("8. Actualizar personaje");
+		System.out.println("9. BBDD -> TXT");
+		System.out.println("10. TXT -> BBDD");
 		// Declaraci�n del switch
 		int opciones = eleccion.nextInt();
 		switch (opciones) {
@@ -802,13 +798,24 @@ public class Inicio {
 		case 8:
 			mControlador.modificarPersonajeMongo();
 			break;
+		case 9:
+			/**
+			 * Redefinir
+			 */
+			mControlador.modificarVideojuegoMongo();
+			break;
+		case 10:
+			/**
+			 * Redefinir
+			 */
+			mControlador.modificarPersonajeMongo();
+			break;
 		default:
 			System.out.println("Dato mal introducido");
 			break;
 		}
 
 	}
-
 
 	public void PedirDatosMongoDB(HashMap<Integer, Videojuego> ListaVideojuegos) {
 		// TODO Coger Datos de la linea 58 de AccesoMongo.java
@@ -830,55 +837,92 @@ public class Inicio {
 		System.out.println("Plataforma:");
 		String plataforma = sc.nextLine();
 		documento.put("Plataforma", plataforma);
-		Videojuego mVideojuego = new Videojuego(documento.getString("Nombre"), documento.getString("Fecha_Lanzamiento"), documento.getString("Desarrollador"), documento.getString("Plataforma"));
-		ListaVideojuegos.put(id,mVideojuego);
+		Videojuego mVideojuego = new Videojuego(documento.getString("Nombre"), documento.getString("Fecha_Lanzamiento"),
+				documento.getString("Desarrollador"), documento.getString("Plataforma"));
+		ListaVideojuegos.put(id, mVideojuego);
 	}
+
+	public void PedirDatosJSONPER(HashMap<Integer, Personajes> ListaPersonajes) {
+		// TODO Coger Datos de la linea 58 de AccesoMongo.java
+		Scanner sc = new Scanner(System.in);
+	
+
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		
+
+		System.out.println("Nombre del personaje:");
+		String nombreP = sc.nextLine();
+		
+
+		System.out.println("ID del juego:");
+		String id_juegotxt = sc.nextLine();
+		int id_juego = Integer.parseInt(id_juegotxt);
+	
+
+		Personajes mPersonaje = new Personajes(nombreP,id_juego);
+		ListaPersonajes.put(id, mPersonaje);
+	}
+	
+	public void PedirDatosJSON(HashMap<Integer, Videojuego> ListaVideojuegos) {
+		// TODO Coger Datos de la linea 58 de AccesoMongo.java
+		Scanner sc = new Scanner(System.in);
+	
+		System.out.println("ID:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+	
+		System.out.println("Nombre:");
+		String nombre = sc.nextLine();
+		
+		System.out.println("Fecha_Lanzamiento:");
+		String fecha = sc.nextLine();
+	
+		System.out.println("Desarrollador:");
+		String desarrollador = sc.nextLine();
+	
+		System.out.println("Plataforma:");
+		String plataforma = sc.nextLine();
+
+
+		Videojuego mVideojuego = new Videojuego(nombre,fecha,desarrollador,plataforma);
+		ListaVideojuegos.put(id, mVideojuego);
+	}
+	
 	
 	public void PedirDatosMongoPER(HashMap<Integer, Personajes> ListaPersonajes) {
 		// TODO Coger Datos de la linea 58 de AccesoMongo.java
 		Scanner sc = new Scanner(System.in);
 		Document documento = new Document();
-		
+
 		System.out.println("ID:");
 		String idTxt = sc.nextLine();
 		int id = Integer.parseInt(idTxt);
 		documento.put("ID", id);
-		
+
 		System.out.println("Nombre del personaje:");
 		String nombreP = sc.nextLine();
 		documento.put("Nombre_Personaje", nombreP);
-		
+
 		System.out.println("ID del juego:");
 		String id_juegotxt = sc.nextLine();
 		int id_juego = Integer.parseInt(id_juegotxt);
 		documento.put("ID_Juego", id_juego);
-		
-		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"), documento.getInteger("ID_Juego"));
-		ListaPersonajes.put(id,mPersonaje);
+
+		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"),
+				documento.getInteger("ID_Juego"));
+		ListaPersonajes.put(id, mPersonaje);
 	}
-	
+
 	public void sacarPantallaPERMongo(HashMap<Integer, Personajes> ListaPersonajes) {
-		for(Entry<Integer, Personajes> personajes : ListaPersonajes.entrySet()) {
+		for (Entry<Integer, Personajes> personajes : ListaPersonajes.entrySet()) {
 			System.out.println("ID: " + personajes.getKey().toString());
 			System.out.println("Nombre del Personaje: " + personajes.getValue().getNombre_Personaje());
 			System.out.println("Id del Juego: " + personajes.getValue().getjuego());
 		}
 	}
-	
-	public void EliminarDatosMongoDB (HashMap<Integer, Videojuego> ListaVideojuegos) {
-		
-	}
-	
-	public void EliminarDatosPERMongoDB (HashMap<Integer, Personajes> ListaPersonajes) {
-		
-	}
-	
-	public void ActualizarDatosMongoDB (HashMap<Integer, Videojuego> ListaVideojuegos) {
-		
-	}
-	
-	public void ActualizarDatosPERMongoDB (HashMap<Integer, Personajes> ListaPersonajes) {
-	}
+
 	public void sacarPantallaMongo(HashMap<Integer, Videojuego> ListaVideojuegos) {
 		for (Entry<Integer, Videojuego> videojuego : ListaVideojuegos.entrySet()) {
 			System.out.println("ID: " + videojuego.getKey().toString());
@@ -887,6 +931,56 @@ public class Inicio {
 			System.out.println("Fecha de Lanzamiento: " + videojuego.getValue().getFecha_Lanzamiento());
 			System.out.println("Desarrollador: " + videojuego.getValue().getDesarrollador());
 		}
+
+	}
+
+	public void PedirDatosUpdateMongoDB(HashMap<Integer, Videojuego> listaVideojuegos) {
+
+		Scanner sc = new Scanner(System.in);
+		Document documento = new Document();
+		System.out.println("Seleccione el ID del cocumento:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		documento.put("ID", id);
+		System.out.println("Nombre:");
+		String nombre = sc.nextLine();
+		documento.put("Nombre", nombre);
+		System.out.println("Fecha_Lanzamiento:");
+		String fecha = sc.nextLine();
+		documento.put("Fecha_Lanzamiento", fecha);
+		System.out.println("Desarrollador:");
+		String desarrollador = sc.nextLine();
+		documento.put("Desarrollador", desarrollador);
+		System.out.println("Plataforma:");
+		String plataforma = sc.nextLine();
+		documento.put("Plataforma", plataforma);
+		Videojuego mVideojuego = new Videojuego(documento.getString("Nombre"), documento.getString("Fecha_Lanzamiento"),
+				documento.getString("Desarrollador"), documento.getString("Plataforma"));
+		listaVideojuegos.put(id, mVideojuego);
+
+	}
+
+	public void PedirDatosUpdateMongoDBPer(HashMap<Integer, Personajes> ListaPersonajes) {
+
+		Scanner sc = new Scanner(System.in);
+		Document documento = new Document();
+		System.out.println("Seleccione el ID del cocumento:");
+		String idTxt = sc.nextLine();
+		int id = Integer.parseInt(idTxt);
+		documento.put("ID", id);
+
+		System.out.println("Nombre del personaje:");
+		String nombreP = sc.nextLine();
+		documento.put("Nombre_Personaje", nombreP);
+
+		System.out.println("ID del juego:");
+		String id_juegotxt = sc.nextLine();
+		int id_juego = Integer.parseInt(id_juegotxt);
+		documento.put("ID_Juego", id_juego);
+
+		Personajes mPersonaje = new Personajes(documento.getString("Nombre_Personaje"),
+				documento.getInteger("ID_Juego"));
+		ListaPersonajes.put(id, mPersonaje);
 
 	}
 }

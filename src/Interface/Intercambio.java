@@ -12,9 +12,11 @@ public interface Intercambio {
 	public HashMap<Integer, Videojuego> EscribirTodos();
 	public HashMap<Integer, Videojuego> Annadir();
 	public HashMap<Integer, Videojuego>LeerTodos();
+	public HashMap<Integer, Videojuego>BorrarVideojuego();
 	
 	public HashMap<Integer, Personajes> EscribirTodosPer();
 	public HashMap<Integer, Personajes>LeerTodosPer();
 	public HashMap<Integer, Personajes> AnnadirPer();
+	public HashMap<Integer, Personajes>BorrarPersonaje();
 	
 }

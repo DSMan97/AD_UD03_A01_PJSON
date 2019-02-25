@@ -211,4 +211,16 @@ public class FileManager implements Intercambio {
 		return listaPersonajes;
 	}
 
+	@Override
+	public HashMap<Integer, Videojuego> BorrarVideojuego() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HashMap<Integer, Personajes> BorrarPersonaje() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
