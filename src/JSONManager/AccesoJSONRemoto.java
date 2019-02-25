@@ -92,7 +92,7 @@ public class AccesoJSONRemoto implements Intercambio {
 			System.out.println("El json que recibimos es: ");
 			
 			System.out.println(response); // Traza para pruebas
-			System.exit(-1);
+			//System.exit(-1);
 			
 			// Parseamos la respuesta y la convertimos en un JSONObject
 			
@@ -360,7 +360,7 @@ public class AccesoJSONRemoto implements Intercambio {
 			System.out.println("El json que recibimos es: ");
 			
 			System.out.println(response); // Traza para pruebas
-			System.exit(-1);
+			//System.exit(-1);
 			
 			// Parseamos la respuesta y la convertimos en un JSONObject
 			
